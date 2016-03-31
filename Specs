@@ -27,9 +27,9 @@ VIEW CONTROLLER SCENES:
         -Authentication with Facebook may occur through the device’s accounts or through Facebook’s website.
 
 2. Map and Table Tabbed View (Allows users to see the locations of other students in two formats)
-    -This view has two tabs at the bottom.
-        -Specifying a map.
-        -Specifying a table.
+    ✓This view has two tabs at the bottom.
+        ✓Specifying a map.
+        ✓Specifying a table.
     -When the map tab is selected, the view displays a map with pins specifying the last 100 locations posted by students.
         -The user is able to zoom and scroll the map to any location using standard pinch and drag gestures.
     -When the user taps a pin, it displays the pin annotation popup, with the student’s name (pulled from their Udacity
@@ -39,11 +39,11 @@ VIEW CONTROLLER SCENES:
     -When the table tab is selected, the most recent 100 locations posted by students are displayed in a table.
         -Each row displays the name from the student’s Udacity profile. Tapping on the row launches Safari and opens the link
          associated with the student.
-    -Both the map tab and the table tab share the same top navigation bar.
-    -The rightmost bar button will be a refresh button.
+    ✓Both the map tab and the table tab share the same top navigation bar.
+    ✓The rightmost bar button will be a refresh button.
         -Clicking on the button will refresh the entire data set by downloading and displaying the most recent 100 posts made
          by students.
-    -The bar button directly to its left will be a pin button.
+    ✓The bar button directly to its left will be a pin button.
         -Clicking on the pin button will modally present the Information Posting View.
     -Optional: If authentication with Facebook is enabled, consider placing a bar button in the top left corner which will
      allow to user to logout.
@@ -67,6 +67,14 @@ VIEW CONTROLLER SCENES:
     -If the submission succeeds, then the Information Posting View should be dismissed, returning the app to the Map and Table
      Tabbed View.
 
+
+
+
+
+
+*****TODO*****
+
+-Change the font size of "logout"
 
 
 

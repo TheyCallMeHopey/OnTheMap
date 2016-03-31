@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Moc-7I-nbO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Login View Controller-->
@@ -37,29 +38,51 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Tct-tL-cIm">
-                                <rect key="frame" x="0.0" y="20" width="375" height="598"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="awP-cz-34m">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Qu2-Tw-HST">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="awP-cz-34m" id="Au5-hs-x4Y">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Qu2-Tw-HST" id="qv4-O6-KNq">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <navigationBar contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q5U-Pt-184">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <navigationItem id="Ca3-6B-J0k">
+                                        <barButtonItem key="leftBarButtonItem" title="LOGOUT" id="DkJ-ba-iKm" userLabel="Logout">
+                                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </barButtonItem>
+                                        <rightBarButtonItems>
+                                            <barButtonItem systemItem="refresh" id="386-rT-LH3">
+                                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            </barButtonItem>
+                                            <barButtonItem image="PinIcon" id="ZAO-3g-2cm" userLabel="Pin">
+                                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            </barButtonItem>
+                                        </rightBarButtonItems>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Tct-tL-cIm" firstAttribute="top" secondItem="IUd-zG-HKA" secondAttribute="bottom" id="03D-g3-Yvn" userLabel="TableView-Top"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Tct-tL-cIm" secondAttribute="trailing" constant="-20" id="Fi7-S9-YWU" userLabel="TableView-Right"/>
-                            <constraint firstItem="RLG-Sj-TWh" firstAttribute="top" secondItem="Tct-tL-cIm" secondAttribute="bottom" id="ddD-D3-rxf" userLabel="TableView-Bottom"/>
-                            <constraint firstItem="Tct-tL-cIm" firstAttribute="leading" secondItem="cqq-NB-cuz" secondAttribute="leadingMargin" constant="-20" id="hbV-5l-spI" userLabel="TableView-Left"/>
+                            <constraint firstItem="Tct-tL-cIm" firstAttribute="leading" secondItem="cqq-NB-cuz" secondAttribute="leadingMargin" constant="-20" id="1Qv-pv-jfq" userLabel="TableView-Left"/>
+                            <constraint firstItem="Q5U-Pt-184" firstAttribute="leading" secondItem="cqq-NB-cuz" secondAttribute="leadingMargin" constant="-20" id="Dpt-Es-SwD" userLabel="NavigationBar-Left"/>
+                            <constraint firstItem="RLG-Sj-TWh" firstAttribute="top" secondItem="Tct-tL-cIm" secondAttribute="bottom" id="HA7-pG-xjM" userLabel="TableView-Bottom"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Q5U-Pt-184" secondAttribute="trailing" constant="-20" id="N0m-aM-umN" userLabel="NavigationBar-Right"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Tct-tL-cIm" secondAttribute="trailing" constant="-20" id="NgG-85-5Rq" userLabel="TableView-Right"/>
+                            <constraint firstItem="Tct-tL-cIm" firstAttribute="top" secondItem="Q5U-Pt-184" secondAttribute="bottom" id="kCZ-gZ-Mm2" userLabel="TableView-Top"/>
+                            <constraint firstItem="Q5U-Pt-184" firstAttribute="top" secondItem="IUd-zG-HKA" secondAttribute="bottom" id="nQh-YX-038" userLabel="NavigationBar-Top"/>
+                            <constraint firstItem="Tct-tL-cIm" firstAttribute="top" secondItem="Q5U-Pt-184" secondAttribute="bottom" id="tVO-5Z-nGZ" userLabel="NavigationBar-Bottom"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" selectedImage="ListIcon" id="VqU-ho-FX8"/>
+                    <tabBarItem key="tabBarItem" title="LIST" image="ListIcon" selectedImage="ListIcon" id="VqU-ho-FX8"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VMx-6i-Itd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -100,16 +123,38 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="TrA-On-Dcg">
                                 <rect key="frame" x="0.0" y="28" width="375" height="590"/>
                             </mapView>
+                            <navigationBar contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vq2-Fq-6qX">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <navigationItem id="B5D-BC-fcW">
+                                        <barButtonItem key="leftBarButtonItem" title="LOGOUT" id="JFD-dT-Y0n" userLabel="Logout">
+                                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </barButtonItem>
+                                        <rightBarButtonItems>
+                                            <barButtonItem systemItem="refresh" id="XeW-5p-7bJ">
+                                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            </barButtonItem>
+                                            <barButtonItem image="PinIcon" id="DKh-QL-PsB" userLabel="Pin">
+                                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            </barButtonItem>
+                                        </rightBarButtonItems>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="TrA-On-Dcg" firstAttribute="leading" secondItem="IKU-vX-9Ie" secondAttribute="leadingMargin" constant="-20" id="JRk-Cq-6hR" userLabel="MapView-Left"/>
                             <constraint firstItem="LTV-QN-y4P" firstAttribute="top" secondItem="TrA-On-Dcg" secondAttribute="bottom" id="L8f-rQ-qX6" userLabel="MapView-Bottom"/>
                             <constraint firstItem="TrA-On-Dcg" firstAttribute="top" secondItem="3Db-6p-eGa" secondAttribute="bottom" constant="8" id="PNA-mR-hEt" userLabel="MapView-Top"/>
+                            <constraint firstItem="Vq2-Fq-6qX" firstAttribute="top" secondItem="3Db-6p-eGa" secondAttribute="bottom" id="REX-RW-wUc" userLabel="NavigationBar-Top"/>
+                            <constraint firstItem="LTV-QN-y4P" firstAttribute="top" secondItem="Vq2-Fq-6qX" secondAttribute="bottom" constant="554" id="RQf-JR-aWb" userLabel="NavigationBar-Bottom"/>
+                            <constraint firstItem="Vq2-Fq-6qX" firstAttribute="leading" secondItem="IKU-vX-9Ie" secondAttribute="leadingMargin" constant="-20" id="kI1-cQ-dAJ" userLabel="NavigationBar-Left"/>
                             <constraint firstAttribute="trailingMargin" secondItem="TrA-On-Dcg" secondAttribute="trailing" constant="-20" id="p2M-dd-JZR" userLabel="MapView-Right"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Vq2-Fq-6qX" secondAttribute="trailing" constant="-20" id="sfi-7Q-y9A" userLabel="NavigationBar-Right"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" selectedImage="MapIcon" id="1do-FX-CIZ"/>
+                    <tabBarItem key="tabBarItem" title="MAP" image="MapIcon" selectedImage="MapIcon" id="1do-FX-CIZ"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QNG-dS-PMK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -139,5 +184,6 @@
     <resources>
         <image name="ListIcon" width="32" height="32"/>
         <image name="MapIcon" width="32" height="32"/>
+        <image name="PinIcon" width="32" height="32"/>
     </resources>
 </document>
