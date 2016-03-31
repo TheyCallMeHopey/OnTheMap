@@ -8,13 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		F8BB39ED1CAC259C000F222D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BB39EC1CAC259C000F222D /* AppDelegate.swift */; };
-		F8BB39EF1CAC259C000F222D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BB39EE1CAC259C000F222D /* ViewController.swift */; };
+		F8BB39EF1CAC259C000F222D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BB39EE1CAC259C000F222D /* LoginViewController.swift */; };
 		F8BB39F21CAC259C000F222D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8BB39F01CAC259C000F222D /* Main.storyboard */; };
 		F8BB39F41CAC259C000F222D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8BB39F31CAC259C000F222D /* Assets.xcassets */; };
 		F8BB39F71CAC259C000F222D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8BB39F51CAC259C000F222D /* LaunchScreen.storyboard */; };
 		F8BB3A021CAC259C000F222D /* On_The_MapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BB3A011CAC259C000F222D /* On_The_MapTests.swift */; };
 		F8BB3A0D1CAC259C000F222D /* On_The_MapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BB3A0C1CAC259C000F222D /* On_The_MapUITests.swift */; };
 		F8BB3A1F1CAC492C000F222D /* Specs in Resources */ = {isa = PBXBuildFile; fileRef = F8BB3A1E1CAC492C000F222D /* Specs */; };
+		F8BB3A211CAC5FA8000F222D /* InformationPostingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BB3A201CAC5FA8000F222D /* InformationPostingViewController.swift */; };
+		F8BB3A231CAC5FE7000F222D /* MapAndTableTabbedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BB3A221CAC5FE7000F222D /* MapAndTableTabbedViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +39,7 @@
 /* Begin PBXFileReference section */
 		F8BB39E91CAC259C000F222D /* On The Map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "On The Map.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8BB39EC1CAC259C000F222D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F8BB39EE1CAC259C000F222D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = "On The Map/ViewController.swift"; sourceTree = "<group>"; };
+		F8BB39EE1CAC259C000F222D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = "On The Map/LoginViewController.swift"; sourceTree = "<group>"; };
 		F8BB39F11CAC259C000F222D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F8BB39F31CAC259C000F222D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F8BB39F61CAC259C000F222D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +51,8 @@
 		F8BB3A0C1CAC259C000F222D /* On_The_MapUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = On_The_MapUITests.swift; sourceTree = "<group>"; };
 		F8BB3A0E1CAC259C000F222D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F8BB3A1E1CAC492C000F222D /* Specs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Specs; sourceTree = "<group>"; };
+		F8BB3A201CAC5FA8000F222D /* InformationPostingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationPostingViewController.swift; sourceTree = "<group>"; };
+		F8BB3A221CAC5FE7000F222D /* MapAndTableTabbedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapAndTableTabbedViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,9 +88,7 @@
 				F8BB3A1D1CAC4813000F222D /* Provided Classes */,
 				F8BB3A1A1CAC46E2000F222D /* Assets */,
 				F8BB3A1B1CAC479A000F222D /* Supporting Files */,
-				F8BB3A001CAC259C000F222D /* On The MapTests */,
-				F8BB3A0B1CAC259C000F222D /* On The MapUITests */,
-				F8BB39EA1CAC259C000F222D /* Products */,
+				F8BB3A241CACD247000F222D /* Other */,
 			);
 			sourceTree = "<group>";
 		};
@@ -149,7 +151,9 @@
 		F8BB3A1C1CAC47CD000F222D /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				F8BB39EE1CAC259C000F222D /* ViewController.swift */,
+				F8BB39EE1CAC259C000F222D /* LoginViewController.swift */,
+				F8BB3A201CAC5FA8000F222D /* InformationPostingViewController.swift */,
+				F8BB3A221CAC5FE7000F222D /* MapAndTableTabbedViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -159,6 +163,16 @@
 			children = (
 			);
 			name = "Provided Classes";
+			sourceTree = "<group>";
+		};
+		F8BB3A241CACD247000F222D /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				F8BB3A001CAC259C000F222D /* On The MapTests */,
+				F8BB3A0B1CAC259C000F222D /* On The MapUITests */,
+				F8BB39EA1CAC259C000F222D /* Products */,
+			);
+			name = Other;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -296,7 +310,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F8BB39EF1CAC259C000F222D /* ViewController.swift in Sources */,
+				F8BB3A211CAC5FA8000F222D /* InformationPostingViewController.swift in Sources */,
+				F8BB39EF1CAC259C000F222D /* LoginViewController.swift in Sources */,
+				F8BB3A231CAC5FE7000F222D /* MapAndTableTabbedViewController.swift in Sources */,
 				F8BB39ED1CAC259C000F222D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -522,6 +538,7 @@
 				F8BB3A131CAC259C000F222D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F8BB3A141CAC259C000F222D /* Build configuration list for PBXNativeTarget "On The MapTests" */ = {
 			isa = XCConfigurationList;
@@ -530,6 +547,7 @@
 				F8BB3A161CAC259C000F222D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F8BB3A171CAC259C000F222D /* Build configuration list for PBXNativeTarget "On The MapUITests" */ = {
 			isa = XCConfigurationList;
@@ -538,6 +556,7 @@
 				F8BB3A191CAC259C000F222D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
