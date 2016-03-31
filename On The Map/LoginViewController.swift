@@ -33,14 +33,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate
     
     func textFieldShouldReturn(textField: UITextField) -> Bool
     {
-        if textField == emailTextField
-        {
-            emailTextField.resignFirstResponder()
-        }
-        else if textField == passwordTextField
-        {
-            passwordTextField.resignFirstResponder()
-        }
+        textField.resignFirstResponder()
         
         return true
     }
