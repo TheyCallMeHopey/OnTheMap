@@ -6,20 +6,43 @@
 //  Copyright © 2016 Hope Elizabeth. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
-class LoginViewController: UIViewController
+class LoginViewController: UIViewController, UITextFieldDelegate
 {
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    
+    @IBAction func signUpButton(sender: AnyObject)
+    {
+        
+    }
+    @IBAction func logInButton(sender: AnyObject)
+    {
+        
+    }
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
     }
-
-    override func didReceiveMemoryWarning()
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool
     {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        if textField == emailTextField
+        {
+            emailTextField.resignFirstResponder()
+        }
+        else if textField == passwordTextField
+        {
+            passwordTextField.resignFirstResponder()
+        }
+        
+        return true
     }
 }
 

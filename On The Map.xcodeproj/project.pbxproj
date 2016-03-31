@@ -10,7 +10,7 @@
 		F8BB39ED1CAC259C000F222D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BB39EC1CAC259C000F222D /* AppDelegate.swift */; };
 		F8BB39EF1CAC259C000F222D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BB39EE1CAC259C000F222D /* LoginViewController.swift */; };
 		F8BB39F21CAC259C000F222D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8BB39F01CAC259C000F222D /* Main.storyboard */; };
-		F8BB39F41CAC259C000F222D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8BB39F31CAC259C000F222D /* Assets.xcassets */; };
+		F8BB39F41CAC259C000F222D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8BB39F31CAC259C000F222D /* Images.xcassets */; };
 		F8BB39F71CAC259C000F222D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8BB39F51CAC259C000F222D /* LaunchScreen.storyboard */; };
 		F8BB3A021CAC259C000F222D /* On_The_MapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BB3A011CAC259C000F222D /* On_The_MapTests.swift */; };
 		F8BB3A0D1CAC259C000F222D /* On_The_MapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BB3A0C1CAC259C000F222D /* On_The_MapUITests.swift */; };
@@ -41,7 +41,7 @@
 		F8BB39EC1CAC259C000F222D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F8BB39EE1CAC259C000F222D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = "On The Map/LoginViewController.swift"; sourceTree = "<group>"; };
 		F8BB39F11CAC259C000F222D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		F8BB39F31CAC259C000F222D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F8BB39F31CAC259C000F222D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F8BB39F61CAC259C000F222D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F8BB39F81CAC259C000F222D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "On The Map/Info.plist"; sourceTree = "<group>"; };
 		F8BB39FD1CAC259C000F222D /* On The MapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "On The MapTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,7 +131,7 @@
 		F8BB3A1A1CAC46E2000F222D /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				F8BB39F31CAC259C000F222D /* Assets.xcassets */,
+				F8BB39F31CAC259C000F222D /* Images.xcassets */,
 				F8BB39F01CAC259C000F222D /* Main.storyboard */,
 				F8BB39F51CAC259C000F222D /* LaunchScreen.storyboard */,
 			);
@@ -283,7 +283,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8BB39F71CAC259C000F222D /* LaunchScreen.storyboard in Resources */,
-				F8BB39F41CAC259C000F222D /* Assets.xcassets in Resources */,
+				F8BB39F41CAC259C000F222D /* Images.xcassets in Resources */,
 				F8BB39F21CAC259C000F222D /* Main.storyboard in Resources */,
 				F8BB3A1F1CAC492C000F222D /* Specs in Resources */,
 			);
