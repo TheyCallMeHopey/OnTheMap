@@ -44,7 +44,7 @@ extension InfoClient
     //Use log in data to get account key from Udacity
     func getAccountKey(completionHandler: (success: Bool, errorString: String?) -> Void)
     {
-        var parameters = InfoClient.substituteKeyInMethod(InfoClient.URLKeys.AuthenticationDictionary, key: InfoClient.URLKeys.UID, value: self.userID!)
+        var parameters = InfoClient.substituteKeyInMethod(InfoClient.URLKeys.AuthenticationDictionary, key: InfoClient.URLKeys.UID, value: userID!)
         
         //Replace variables in parameter with actual data
         parameters = InfoClient.substituteKeyInMethod(parameters!, key: InfoClient.URLKeys.PWD, value: self.password!)
@@ -156,11 +156,11 @@ extension InfoClient
         }
     }
     
-    //Search Udacity for a student location details
-    func searchForAStudentLocation(completionHandler: (success: Bool, errorString: String?) -> Void)
+    //Search Udacity for student location details
+    func searchStudentLocation(completionHandler: (success: Bool, errorString: String?) -> Void)
     {
-        let parameters = InfoClient.substituteKeyInMethod(InfoClient.URLKeys.QueryStudentLocation, key: InfoClient.URLKeys.Key, value: self.accountKey!)
-
+        let parameters = InfoClient.substituteKeyInMethod(InfoClient.URLKeys.QueryStudentLocation, key: InfoClient.URLKeys.Key, value: accountKey!)
+        
         //Dictionary to hold request values
         var requestValues = [[String:String]]()
         
@@ -248,7 +248,7 @@ extension InfoClient
     func createUserLocation(completionHandler: (success: Bool, errorString: String?) -> Void)
     {
         //String for updating dictionary of location data for Udacity user
-        let updateString = InfoClient.sharedInstance().userLocation?.buildUpdateString()
+        let updateString = InfoClient.sharedInstance().userLocation!.buildUpdateString()
         
         //Dictionary that holds request values
         var requestValues = [[String:String]]()
@@ -257,7 +257,7 @@ extension InfoClient
         requestValues.append([InfoClient.RequestKeys.Value : InfoClient.RequestKeys.RESTAPIKey, InfoClient.RequestKeys.Field : InfoClient.RequestKeys.RESTAPIField])
         requestValues.append([InfoClient.RequestKeys.Value : InfoClient.RequestKeys.ApplicationJSON, InfoClient.RequestKeys.Field : InfoClient.RequestKeys.ContentType])
         
-        taskForPOSTMethod(false, baseURL: BaseURLs.ParseBaseURLSecure, method: Methods.StudentLocation, parameters: updateString!, requestValues: requestValues)
+        taskForPOSTMethod(false, baseURL: BaseURLs.ParseBaseURLSecure, method: Methods.StudentLocation, parameters: updateString, requestValues: requestValues)
         {
             (JSONResult, error) -> Void in
             
@@ -275,8 +275,8 @@ extension InfoClient
     //Update the user's location on Udacity
     func updateUserLocation(completionHandler: (success: Bool, errorString: String?) -> Void)
     {
-        // Create a string for updating dictionary of location data for user on Udacity site.
-        let objectId = InfoClient.sharedInstance().userLocation?.objectID
+        //String for updating dictionary of location data for Udacity user
+        let objectID = InfoClient.sharedInstance().userLocation!.objectID
         let updateString = InfoClient.sharedInstance().userLocation!.buildUpdateString()
 
         //Dictionary that holds request values
@@ -286,7 +286,7 @@ extension InfoClient
         requestValues.append([InfoClient.RequestKeys.Value : InfoClient.RequestKeys.RESTAPIKey, InfoClient.RequestKeys.Field : InfoClient.RequestKeys.RESTAPIField])
         requestValues.append([InfoClient.RequestKeys.Value : InfoClient.RequestKeys.ApplicationJSON, InfoClient.RequestKeys.Field : InfoClient.RequestKeys.ContentType])
         
-        taskForPUTMethod(false, baseURL: BaseURLs.ParseBaseURLSecure, method: Methods.StudentLocation, fileName: "/"+objectId!, parameters: updateString, requestValues: requestValues)
+        taskForPUTMethod(false, baseURL: BaseURLs.ParseBaseURLSecure, method: Methods.StudentLocation, fileName: "/"+objectID, parameters: updateString, requestValues: requestValues)
         {
             (JSONResult, error) -> Void in
 

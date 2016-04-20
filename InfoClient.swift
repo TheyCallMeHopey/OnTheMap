@@ -93,8 +93,6 @@ class InfoClient : NSObject
     //Handle JSON response - POST method
     func taskForPOSTMethod(udacity: Bool, baseURL: String, method: String, parameters: String, requestValues: [[String:String]], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask
     {
-        var jsonError: NSError? = nil
-        
         //Create request from URL
         let urlString = baseURL + method
         let url = NSURL(string: urlString)!
@@ -147,8 +145,6 @@ class InfoClient : NSObject
     //Handle JSON response - PUT method
     func taskForPUTMethod(udacity: Bool, baseURL: String, method: String, fileName: String, parameters: String, requestValues: [[String:String]], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask
     {
-        var jsonError: NSError? = nil
-        
         //Create request from URL
         let urlString = baseURL + method + fileName
         let url = NSURL(string: urlString)!

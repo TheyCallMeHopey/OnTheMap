@@ -190,10 +190,10 @@
 			isa = PBXGroup;
 			children = (
 				F8E5128F1CC17C36001F9634 /* InfoClient.swift */,
-				F8E512911CC18026001F9634 /* StudentLocation.swift */,
-				F8E512931CC192DF001F9634 /* PinData.swift */,
 				F8E512961CC1947A001F9634 /* InfoConstants.swift */,
 				F8E512981CC1D4C1001F9634 /* InfoConvenience.swift */,
+				F8E512911CC18026001F9634 /* StudentLocation.swift */,
+				F8E512931CC192DF001F9634 /* PinData.swift */,
 			);
 			name = Info;
 			sourceTree = "<group>";
