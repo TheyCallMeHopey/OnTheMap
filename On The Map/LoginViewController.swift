@@ -20,7 +20,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate
     }
     @IBAction func logInButton(sender: AnyObject)
     {
-        
+        if emailTextField.text == ""
+        {
+            alertMessage("PLEASE ENTER EMAIL ADDRESS.")
+        }
+        else
+        {
+            if passwordTextField.text == ""
+            {
+                alertMessage("PLEASE ENTER PASSWORD.")
+            }
+            else
+            {
+               //Authenticate userID and password
+            }
+        }
     }
     
     override func viewDidLoad()
@@ -37,5 +51,29 @@ class LoginViewController: UIViewController, UITextFieldDelegate
         
         return true
     }
+    
+    func alertMessage(message: String)
+    {
+        let alertController = UIAlertController(title: "", message: "\(message)", preferredStyle: .Alert)
+        let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        
+        alertController.addAction(okAction)
+        presentViewController(alertController, animated: true, completion: nil)
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
