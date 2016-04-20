@@ -81,7 +81,7 @@ class InfoClient : NSObject
                 }
                 
                 // Send data to JSON parser
-                InfoClient.parseJSONWithCompletionHandler(newData, completionHandler: completionHandler)
+                InfoClient.parseJSONWithCompletionHandler(newData!, completionHandler: completionHandler)
             }
         })
         
@@ -89,220 +89,218 @@ class InfoClient : NSObject
         
         return task
     }
-}
-
-//Handle JSON response - POST method
-func taskForPOSTMethod(udacity: Bool, baseURL: String, method: String, parameters: String, requestValues: [[String:String]], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask
-{
-    var jsonError: NSError? = nil
     
-    //Create request from URL
-    let urlString = baseURL + method
-    let url = NSURL(string: urlString)!
-    let request = NSMutableURLRequest(URL: url)
-    
-    request.HTTPMethod = "POST"
-    
-    //If request values are used in this request, add them to dictionary
-    for dict in requestValues
+    //Handle JSON response - POST method
+    func taskForPOSTMethod(udacity: Bool, baseURL: String, method: String, parameters: String, requestValues: [[String:String]], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask
     {
-        request.addValue(dict["value"]!, forHTTPHeaderField: dict["field"]!)
+        var jsonError: NSError? = nil
+        
+        //Create request from URL
+        let urlString = baseURL + method
+        let url = NSURL(string: urlString)!
+        let request = NSMutableURLRequest(URL: url)
+        
+        request.HTTPMethod = "POST"
+        
+        //If request values are used in this request, add them to dictionary
+        for dict in requestValues
+        {
+            request.addValue(dict["value"]!, forHTTPHeaderField: dict["field"]!)
+        }
+        
+        //Set HTTPBody of request
+        request.HTTPBody = parameters.dataUsingEncoding(NSUTF8StringEncoding)
+        
+        //Pass response data to JSON parser
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithRequest(request, completionHandler:
+            {
+                (data, response, downloadError) -> Void in
+                
+                if let error = downloadError
+                {
+                    let newError = InfoClient.errorForData(data, response: response, error: error)
+                    
+                    completionHandler(result: nil, error: newError)
+                }
+                else
+                {
+                    var newData = data
+                    
+                    //If udacity Bool is true, get a set of the data for Udacity requirements
+                    if udacity
+                    {
+                        //Get subset of data
+                        newData = data!.subdataWithRange(NSMakeRange(5, data!.length - 5))
+                    }
+                    
+                    //Send data to JSON parser
+                    InfoClient.parseJSONWithCompletionHandler(newData!, completionHandler: completionHandler)
+                }
+        })
+        
+        task.resume()
+        
+        return task
     }
     
-    //Set HTTPBody of request
-    request.HTTPBody = parameters.dataUsingEncoding(NSUTF8StringEncoding)
-    
-    //Pass response data to JSON parser
-    let session = NSURLSession.sharedSession()
-    let task = session.dataTaskWithRequest(request, completionHandler:
+    //Handle JSON response - PUT method
+    func taskForPUTMethod(udacity: Bool, baseURL: String, method: String, fileName: String, parameters: String, requestValues: [[String:String]], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask
     {
-        (data, response, downloadError) -> Void in
+        var jsonError: NSError? = nil
         
-        if let error = downloadError
+        //Create request from URL
+        let urlString = baseURL + method + fileName
+        let url = NSURL(string: urlString)!
+        let request = NSMutableURLRequest(URL: url)
+        
+        request.HTTPMethod = "PUT"
+        
+        //If request values are used in this request, add them to dictionary
+        for dict in requestValues
         {
-            let newError = InfoClient.errorForData(data, response: response, error: error)
+            request.addValue(dict["value"]!, forHTTPHeaderField: dict["field"]!)
+        }
+        
+        //Set HTTPBody of request
+        request.HTTPBody = parameters.dataUsingEncoding(NSUTF8StringEncoding)
+        
+        //Pass response data to JSON parser
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithRequest(request, completionHandler:
+            {
+                (data, response, downloadError) -> Void in
+                
+                if let error = downloadError
+                {
+                    let newError = InfoClient.errorForData(data, response: response, error: error)
+                    
+                    completionHandler(result: nil, error: newError)
+                }
+                else
+                {
+                    var newData = data
+                    
+                    //If udacity Bool is true, get a set of the data for Udacity requirements
+                    if udacity
+                    {
+                        //Get subset of data
+                        newData = data!.subdataWithRange(NSMakeRange(5, data!.length - 5))
+                    }
+                    
+                    // Send data to JSON parser
+                    InfoClient.parseJSONWithCompletionHandler(newData!, completionHandler: completionHandler)
+                }
+        })
+        
+        task.resume()
+        
+        return task
+    }
+    
+    //Parse JSON in NSData format
+    class func parseJSONWithCompletionHandler(data: NSData, completionHandler: (result: AnyObject!, error: NSError?) -> Void)
+    {
+        var parsingError: NSError? = nil
+        let parsedResult: AnyObject?
+        
+        do
+        {
+            parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments)
+        }
+        catch let error as NSError
+        {
+            parsingError = error
+            parsedResult = nil
+        }
+        
+        if let error = parsingError
+        {
+            NSLog("Error: \(parsingError)");
             
-            completionHandler(result: nil, error: newError)
+            completionHandler(result: nil, error: error)
         }
         else
         {
-            var newData = data
-            
-            //If udacity Bool is true, get a set of the data for Udacity requirements
-            if udacity
-            {
-                //Get subset of data
-                newData = data!.subdataWithRange(NSMakeRange(5, data!.length - 5))
-            }
-            
-            //Send data to JSON parser
-            InfoClient.parseJSONWithCompletionHandler(newData, completionHandler: completionHandler)
+            completionHandler(result: parsedResult, error: nil)
         }
-    })
-    
-    task.resume()
-    
-    return task
-}
-
-//Handle JSON response - PUT method
-func taskForPUTMethod(udacity: Bool, baseURL: String, method: String, fileName: String, parameters: String, requestValues: [[String:String]], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask
-{
-    var jsonError: NSError? = nil
-    
-    //Create request from URL
-    let urlString = baseURL + method + fileName
-    let url = NSURL(string: urlString)!
-    let request = NSMutableURLRequest(URL: url)
-    
-    request.HTTPMethod = "PUT"
-    
-    //If request values are used in this request, add them to dictionary
-    for dict in requestValues
-    {
-        request.addValue(dict["value"]!, forHTTPHeaderField: dict["field"]!)
     }
     
-    //Set HTTPBody of request
-    request.HTTPBody = parameters.dataUsingEncoding(NSUTF8StringEncoding)
-    
-    //Pass response data to JSON parser
-    let session = NSURLSession.sharedSession()
-    let task = session.dataTaskWithRequest(request, completionHandler:
+    //Replace variable with a string value
+    class func substituteKeyInMethod(method: String, key: String, value: String) -> String?
     {
-        (data, response, downloadError) -> Void in
-        
-        if let error = downloadError
+        if method.rangeOfString("\(key)") != nil
         {
-            let newError = InfoClient.errorForData(data, response: response, error: error)
-            
-            completionHandler(result: nil, error: newError)
+            return method.stringByReplacingOccurrencesOfString("\(key)", withString: value)
         }
         else
         {
-            var newData = data
-            
-            //If udacity Bool is true, get a set of the data for Udacity requirements
-            if udacity
-            {
-                //Get subset of data
-                newData = data!.subdataWithRange(NSMakeRange(5, data!.length - 5))
-            }
-            
-            // Send data to JSON parser
-            InfoClient.parseJSONWithCompletionHandler(newData, completionHandler: completionHandler)
+            return nil
         }
-    })
-    
-    task.resume()
-    
-    return task
-}
-
-//Parse JSON in NSData format
-public func parseJSONWithCompletionHandler(data: NSData, completionHandler: (result: AnyObject!, error: NSError?) -> Void)
-{
-    var parsingError: NSError? = nil
-    let parsedResult: AnyObject?
-    
-    do
-    {
-        parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments)
-    }
-    catch let error as NSError
-    {
-        parsingError = error
-        parsedResult = nil
     }
     
-    if let error = parsingError
+    //Escaping values in parameters
+    class func  escapedParameters(parameters: [String:AnyObject]) -> String
     {
-        NSLog("Error: \(parsingError)");
+        var urlVars = [String]()
         
-        completionHandler(result: nil, error: error)
-    }
-    else
-    {
-        completionHandler(result: parsedResult, error: nil)
-    }
-}
-
-//Replace variable with a string value
-public func substituteKeyInMethod(method: String, key: String, value: String) -> String?
-{
-    if method.rangeOfString("\(key)") != nil
-    {
-        return method.stringByReplacingOccurrencesOfString("\(key)", withString: value)
-    }
-    else
-    {
-        return nil
-    }
-}
-
-//Error messages
-public func errorForData(data: NSData?, response: NSURLResponse?, error: NSError) -> NSError
-{
-    //JSON data error
-    if let parsedResult = (try? NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)) as? [String:AnyObject]
-    {
-        //Make readable
-        if let errorMessage = parsedResult[JSONResponseKeys.Message] as? String
+        for (key, value) in parameters
         {
-            let errorCode = parsedResult[JSONResponseKeys.Code] as? Int
-            let userInfo = [NSLocalizedDescriptionKey : errorMessage]
+            let stringValue = "\(value)"
             
-            return NSError(domain: "Flickr Error", code: errorCode!, userInfo: userInfo)
+            let escapedValue = stringValue.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
+            
+            urlVars += [key + "=" + "\(escapedValue!)"]
         }
-    }
-    
-    return error
-}
-
-//Escaping values in parameters
-public func escapedParameters(parameters: [String:AnyObject]) -> String
-{
-    var urlVars = [String]()
-    
-    for (key, value) in parameters
-    {
-        let stringValue = "\(value)"
         
-        let escapedValue = stringValue.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
-        
-        urlVars += [key + "=" + "\(escapedValue!)"]
+        return (!urlVars.isEmpty ? "?" : "") + urlVars.joinWithSeparator("&")
     }
     
-    return (!urlVars.isEmpty ? "?" : "") + urlVars.joinWithSeparator("&")
-}
-
-func sharedInstance() -> InfoClient
-{
-    struct Singleton
+    class func sharedInstance() -> InfoClient
     {
-        static var sharedInstance = InfoClient()
+        struct Singleton
+        {
+            static var sharedInstance = InfoClient()
+        }
+        
+        return Singleton.sharedInstance
     }
     
-    return Singleton.sharedInstance
-}
-
-
-
-public func createUserLocation() -> NSDictionary
-{
-    var userLocationDictionary: [String:AnyObject]
-    userLocationDictionary =
-    [
-        "uniqueKey" : InfoClient.sharedInstance().accountKey!,
-        "firstName" : InfoClient.sharedInstance().firstName!,
-        "lastName" : InfoClient.sharedInstance().lastName!,
-        "mapString" : InfoClient.sharedInstance().mapString!,
-        "mediaURL" : InfoClient.sharedInstance().mediaURL!,
-        "latitude" : InfoClient.sharedInstance().userLat!,
-        "longitude" : InfoClient.sharedInstance().userLong!
-    ]
+    class func createUserLocation() -> NSDictionary
+    {
+        var userLocationDictionary: [String:AnyObject]
+        userLocationDictionary =
+            [
+                "uniqueKey" : InfoClient.sharedInstance().accountKey!,
+                "firstName" : InfoClient.sharedInstance().firstName!,
+                "lastName" : InfoClient.sharedInstance().lastName!,
+                "mapString" : InfoClient.sharedInstance().mapString!,
+                "mediaURL" : InfoClient.sharedInstance().mediaURL!,
+                "latitude" : InfoClient.sharedInstance().userLat!,
+                "longitude" : InfoClient.sharedInstance().userLong!
+        ]
+        
+        return userLocationDictionary
+    }
     
-    return userLocationDictionary
+    //Error messages
+    class func errorForData(data: NSData?, response: NSURLResponse?, error: NSError) -> NSError
+    {
+        //JSON data error
+        if let parsedResult = (try? NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)) as? [String:AnyObject]
+        {
+            //Make readable
+            if let errorMessage = parsedResult[JSONResponseKeys.Message] as? String
+            {
+                let errorCode = parsedResult[JSONResponseKeys.Code] as? Int
+                let userInfo = [NSLocalizedDescriptionKey : errorMessage]
+                
+                return NSError(domain: "Flickr Error", code: errorCode!, userInfo: userInfo)
+            }
+        }
+        
+        return error
+    }
 }
 
 
