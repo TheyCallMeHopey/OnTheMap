@@ -86,7 +86,7 @@
         <!--List-->
         <scene sceneID="1OW-p6-HQW">
             <objects>
-                <viewController title="List" id="HGF-72-NsE" customClass="MapAndTableTabbedViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="List" id="HGF-72-NsE" customClass="ListViewController" customModule="On_The_Map" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IUd-zG-HKA"/>
                         <viewControllerLayoutGuide type="bottom" id="RLG-Sj-TWh"/>
@@ -111,6 +111,7 @@
                             </tableView>
                             <navigationBar contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q5U-Pt-184">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <items>
                                     <navigationItem id="Ca3-6B-J0k">
                                         <barButtonItem key="leftBarButtonItem" title="LOGOUT" id="DkJ-ba-iKm" userLabel="Logout">
@@ -150,7 +151,7 @@
         <!--Web View Controller-->
         <scene sceneID="vYY-bR-e6U">
             <objects>
-                <viewController title="Web View Controller" id="iMW-d1-Roz" userLabel="Web View Controller" customClass="WebViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WebViewController" title="Web View Controller" id="iMW-d1-Roz" userLabel="Web View Controller" customClass="WebViewController" customModule="On_The_Map" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tMe-gv-fHG"/>
                         <viewControllerLayoutGuide type="bottom" id="YMM-2j-S2T"/>
@@ -159,15 +160,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JnA-7J-7BZ">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                            <webView contentMode="scaleAspectFit" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JnA-7J-7BZ">
+                                <rect key="frame" x="0.0" y="28" width="375" height="639"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
                             </webView>
-                            <navigationBar hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aeg-GR-kM5">
+                            <navigationBar contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aeg-GR-kM5">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <items>
                                     <navigationItem id="a6Z-u7-0xX">
                                         <barButtonItem key="rightBarButtonItem" title="CANCEL" id="SVM-xG-9yf">
+                                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <action selector="cancelButton:" destination="iMW-d1-Roz" id="dEK-9n-MGV"/>
                                             </connections>
@@ -178,10 +183,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="JnA-7J-7BZ" firstAttribute="leading" secondItem="jkY-Jt-cVm" secondAttribute="leadingMargin" constant="-20" id="JbA-Fr-aL0" userLabel="WebView - Left"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="JnA-7J-7BZ" secondAttribute="trailing" constant="-20" id="X4o-Pr-AIC" userLabel="WebView - Right"/>
-                            <constraint firstItem="JnA-7J-7BZ" firstAttribute="top" secondItem="tMe-gv-fHG" secondAttribute="bottom" id="jS0-Cy-s3Q" userLabel="WebView - Top"/>
-                            <constraint firstItem="YMM-2j-S2T" firstAttribute="top" secondItem="JnA-7J-7BZ" secondAttribute="bottom" id="yjO-ms-Icg" userLabel="WebView - Bottom"/>
+                            <constraint firstItem="JnA-7J-7BZ" firstAttribute="top" secondItem="tMe-gv-fHG" secondAttribute="bottom" constant="8" id="CDM-l9-EZ0" userLabel="WebView - Top"/>
+                            <constraint firstItem="YMM-2j-S2T" firstAttribute="top" secondItem="JnA-7J-7BZ" secondAttribute="bottom" id="Lx5-9C-Oyn" userLabel="WebView - Bottom"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="aeg-GR-kM5" secondAttribute="trailing" constant="-20" id="R30-QP-NJr" userLabel="NavigationBar - Right"/>
+                            <constraint firstItem="aeg-GR-kM5" firstAttribute="top" secondItem="tMe-gv-fHG" secondAttribute="bottom" id="W6n-3Q-ZR7" userLabel="NavigationBar - Top"/>
+                            <constraint firstItem="JnA-7J-7BZ" firstAttribute="leading" secondItem="jkY-Jt-cVm" secondAttribute="leadingMargin" constant="-20" id="e4p-yS-wzc" userLabel="WebView - Left"/>
+                            <constraint firstItem="aeg-GR-kM5" firstAttribute="leading" secondItem="jkY-Jt-cVm" secondAttribute="leadingMargin" constant="-20" id="eG1-2C-ICn" userLabel="NavigationBar - Left"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="JnA-7J-7BZ" secondAttribute="trailing" constant="-20" id="qXz-bL-M35" userLabel="WebView - Right"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
@@ -197,7 +205,7 @@
         <!--Map-->
         <scene sceneID="CMD-wn-NZf">
             <objects>
-                <viewController title="Map" id="sA5-dS-cNS" sceneMemberID="viewController">
+                <viewController title="Map" id="sA5-dS-cNS" customClass="MapViewController" customModule="On_The_Map" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3Db-6p-eGa"/>
                         <viewControllerLayoutGuide type="bottom" id="LTV-QN-y4P"/>
@@ -211,6 +219,7 @@
                             </mapView>
                             <navigationBar contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vq2-Fq-6qX">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <items>
                                     <navigationItem id="B5D-BC-fcW">
                                         <barButtonItem key="leftBarButtonItem" title="LOGOUT" id="JFD-dT-Y0n" userLabel="Logout">
@@ -242,6 +251,9 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="MAP" image="MapIcon" selectedImage="MapIcon" id="1do-FX-CIZ"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="mapView" destination="TrA-On-Dcg" id="zLZ-1j-VZl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QNG-dS-PMK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -250,7 +262,7 @@
         <!--Map & List-->
         <scene sceneID="4Xe-8r-gPf">
             <objects>
-                <tabBarController storyboardIdentifier="MapListTabBarController" title="Map &amp; List" id="Moc-7I-nbO" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="UITabBarController" title="Map &amp; List" id="Moc-7I-nbO" sceneMemberID="viewController">
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Dzh-1r-90Z">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -292,4 +304,5 @@
         <image name="PinIcon" width="32" height="32"/>
         <image name="UdacityLogo" width="256" height="256"/>
     </resources>
+    <color key="tintColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
 </document>

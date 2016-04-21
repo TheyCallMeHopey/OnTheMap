@@ -21,7 +21,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate
         let url = NSURL(string: "https://www.udacity.com/account/auth#!/signup")
         
         webController.urlRequest = NSURLRequest(URL: url!)
-        webController.authenticating = false
         
         self.presentViewController(webController, animated: true, completion: nil)
     }
@@ -57,7 +56,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate
                         
                         NSOperationQueue.mainQueue().addOperationWithBlock
                         {
-                            let controller = self.storyboard!.instantiateViewControllerWithIdentifier("MapListTabBarController") as! UITabBarController
+                            let controller = self.storyboard!.instantiateViewControllerWithIdentifier("UITabBarController") as! UITabBarController
                             
                             self.presentViewController(controller, animated: true, completion: nil)
                         }

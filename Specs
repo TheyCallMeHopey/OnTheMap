@@ -74,7 +74,8 @@ VIEW CONTROLLER SCENES:
 
 *****TODO*****
 
--Change the font size of "logout"(MapViewController) and "cancel"(WebViewController)
+-Change font size of "logout"(MapViewController) and "cancel"(WebViewController)
+-Change TabBar background color and highlight color
 
 
 

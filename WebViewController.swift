@@ -11,7 +11,6 @@ import UIKit
 
 class WebViewController: UIViewController, UIWebViewDelegate
 {
-    var authenticating: Bool = true
     var urlRequest: NSURLRequest? = nil
     
     @IBOutlet weak var webView: UIWebView!
@@ -32,30 +31,6 @@ class WebViewController: UIViewController, UIWebViewDelegate
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
-        
-        if authenticating
-        {
-            navigationBar.hidden = false
-        }
-        else
-        {
-            navigationBar.hidden = true
-            
-            if InfoClient.sharedInstance().loggedIn
-            {
-                //Move into the MapListTabBarController
-                let controller = self.storyboard!.instantiateViewControllerWithIdentifier("MapListTabBarController") as! UITabBarController
-                
-                self.presentViewController(controller, animated: true, completion: nil)
-            }
-            else
-            {
-                //Go back to LoginViewController
-                let controller = self.storyboard!.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
-                
-                self.presentViewController(controller, animated: true, completion: nil)
-            }
-        }
         
         if urlRequest != nil
         {
