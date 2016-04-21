@@ -17,7 +17,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate
     @IBAction func signUpButton(sender: AnyObject)
     {
        //Open web for sign up
-        let webController = self.storyboard!.instantiateViewControllerWithIdentifier("") as! 
+        let webController = self.storyboard!.instantiateViewControllerWithIdentifier("WebViewController") as! WebViewController
+        let url = NSURL(string: "https://www.udacity.com/account/auth#!/signup")
+        
+        webController.urlRequest = NSURLRequest(URL: url!)
+        webController.authenticating = false
+        
+        self.presentViewController(webController, animated: true, completion: nil)
     }
     
     @IBAction func logInButton(sender: AnyObject)

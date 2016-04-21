@@ -10,7 +10,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="Login View Controller" id="BYZ-38-t0r" customClass="LoginViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" title="Login View Controller" id="BYZ-38-t0r" customClass="LoginViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -158,9 +158,37 @@
                     <view key="view" contentMode="scaleToFill" id="jkY-Jt-cVm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JnA-7J-7BZ">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                            </webView>
+                            <navigationBar hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aeg-GR-kM5">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <navigationItem id="a6Z-u7-0xX">
+                                        <barButtonItem key="rightBarButtonItem" title="CANCEL" id="SVM-xG-9yf">
+                                            <connections>
+                                                <action selector="cancelButton:" destination="iMW-d1-Roz" id="dEK-9n-MGV"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="JnA-7J-7BZ" firstAttribute="leading" secondItem="jkY-Jt-cVm" secondAttribute="leadingMargin" constant="-20" id="JbA-Fr-aL0" userLabel="WebView - Left"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="JnA-7J-7BZ" secondAttribute="trailing" constant="-20" id="X4o-Pr-AIC" userLabel="WebView - Right"/>
+                            <constraint firstItem="JnA-7J-7BZ" firstAttribute="top" secondItem="tMe-gv-fHG" secondAttribute="bottom" id="jS0-Cy-s3Q" userLabel="WebView - Top"/>
+                            <constraint firstItem="YMM-2j-S2T" firstAttribute="top" secondItem="JnA-7J-7BZ" secondAttribute="bottom" id="yjO-ms-Icg" userLabel="WebView - Bottom"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="navigationBar" destination="aeg-GR-kM5" id="pgI-Eg-MaS"/>
+                        <outlet property="webView" destination="JnA-7J-7BZ" id="5Hu-x2-7Cr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Aaa-rO-OFg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
