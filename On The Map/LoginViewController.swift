@@ -16,23 +16,53 @@ class LoginViewController: UIViewController, UITextFieldDelegate
     
     @IBAction func signUpButton(sender: AnyObject)
     {
-        
+       //Open web for sign up
+        let webController = self.storyboard!.instantiateViewControllerWithIdentifier("") as! 
     }
+    
     @IBAction func logInButton(sender: AnyObject)
     {
-        if emailTextField.text == ""
+        let userID = emailTextField.text
+        let userPassword = passwordTextField.text
+        
+        if userID == ""
         {
             alertMessage("PLEASE ENTER EMAIL ADDRESS.")
         }
         else
         {
-            if passwordTextField.text == ""
+            if userPassword == ""
             {
                 alertMessage("PLEASE ENTER PASSWORD.")
             }
             else
             {
                //Authenticate userID and password
+                InfoClient.sharedInstance().userID = userID
+                InfoClient.sharedInstance().password = userPassword
+                
+                InfoClient.sharedInstance().authenticateWithLogIn(self, completionHandler:
+                {
+                    (success, errorString) -> Void in
+                    
+                    if success
+                    {
+                        InfoClient.sharedInstance().loggedIn = true
+                        
+                        NSOperationQueue.mainQueue().addOperationWithBlock
+                        {
+                            let controller = self.storyboard!.instantiateViewControllerWithIdentifier("MapListTabBarController") as! UITabBarController
+                            
+                            self.presentViewController(controller, animated: true, completion: nil)
+                        }
+                    }
+                    else
+                    {
+                        InfoClient.sharedInstance().loggedIn = false
+                        
+                        self.alertMessage("Not able to authenticate your log in information.")
+                    }
+                })
             }
         }
     }

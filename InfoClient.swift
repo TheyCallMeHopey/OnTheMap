@@ -11,11 +11,8 @@ import MapKit
 
 class InfoClient : NSObject
 {
-    //TODO: May or may not need this later - just put it in as a reminder
-    //var loggedIn = false
-    
+    var loggedIn = false
     var session: NSURLSession
-
     var userID: String? = nil
     var password: String? = nil
     var accountKey: String? = nil
@@ -24,10 +21,10 @@ class InfoClient : NSObject
     var lastName: String? = nil
     var mapString: String? = "city"
     var mediaURL: String? = "url"
-    var userLat: Double? = 00.00
-    var userLong: Double? = 00.00
+    var userLat: Double? = 34.025774550825844
+    var userLong: Double? = -118.80068466067314
     
-    var currentLocation: CLLocation? = CLLocation(latitude: 00.00, longitude: 00.00)
+    var currentLocation: CLLocation? = CLLocation(latitude: 34.025774550825844, longitude: -118.80068466067314)
     var userLocation: StudentLocation? = nil
     
     var students:[StudentLocation] = [StudentLocation]()
@@ -60,6 +57,7 @@ class InfoClient : NSObject
         
         //Pass response data to JSON parser
         let session = NSURLSession.sharedSession()
+        
         let task = session.dataTaskWithRequest(request, completionHandler:
         {
             (data, response, downloadError) -> Void in
@@ -111,30 +109,31 @@ class InfoClient : NSObject
         
         //Pass response data to JSON parser
         let session = NSURLSession.sharedSession()
+        
         let task = session.dataTaskWithRequest(request, completionHandler:
+        {
+            (data, response, downloadError) -> Void in
+            
+            if let error = downloadError
             {
-                (data, response, downloadError) -> Void in
+                let newError = InfoClient.errorForData(data, response: response, error: error)
                 
-                if let error = downloadError
+                completionHandler(result: nil, error: newError)
+            }
+            else
+            {
+                var newData = data
+                
+                //If udacity Bool is true, get a set of the data for Udacity requirements
+                if udacity
                 {
-                    let newError = InfoClient.errorForData(data, response: response, error: error)
-                    
-                    completionHandler(result: nil, error: newError)
+                    //Get subset of data
+                    newData = data!.subdataWithRange(NSMakeRange(5, data!.length - 5))
                 }
-                else
-                {
-                    var newData = data
-                    
-                    //If udacity Bool is true, get a set of the data for Udacity requirements
-                    if udacity
-                    {
-                        //Get subset of data
-                        newData = data!.subdataWithRange(NSMakeRange(5, data!.length - 5))
-                    }
-                    
-                    //Send data to JSON parser
-                    InfoClient.parseJSONWithCompletionHandler(newData!, completionHandler: completionHandler)
-                }
+                
+                //Send data to JSON parser
+                InfoClient.parseJSONWithCompletionHandler(newData!, completionHandler: completionHandler)
+            }
         })
         
         task.resume()
@@ -164,29 +163,29 @@ class InfoClient : NSObject
         //Pass response data to JSON parser
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithRequest(request, completionHandler:
-            {
-                (data, response, downloadError) -> Void in
+        {
+            (data, response, downloadError) -> Void in
                 
-                if let error = downloadError
+            if let error = downloadError
+            {
+                let newError = InfoClient.errorForData(data, response: response, error: error)
+                
+                completionHandler(result: nil, error: newError)
+            }
+            else
+            {
+                var newData = data
+                
+                //If udacity Bool is true, get a set of the data for Udacity requirements
+                if udacity
                 {
-                    let newError = InfoClient.errorForData(data, response: response, error: error)
-                    
-                    completionHandler(result: nil, error: newError)
+                    //Get subset of data
+                    newData = data!.subdataWithRange(NSMakeRange(5, data!.length - 5))
                 }
-                else
-                {
-                    var newData = data
                     
-                    //If udacity Bool is true, get a set of the data for Udacity requirements
-                    if udacity
-                    {
-                        //Get subset of data
-                        newData = data!.subdataWithRange(NSMakeRange(5, data!.length - 5))
-                    }
-                    
-                    // Send data to JSON parser
-                    InfoClient.parseJSONWithCompletionHandler(newData!, completionHandler: completionHandler)
-                }
+                // Send data to JSON parser
+                InfoClient.parseJSONWithCompletionHandler(newData!, completionHandler: completionHandler)
+            }
         })
         
         task.resume()
@@ -266,14 +265,14 @@ class InfoClient : NSObject
     {
         var userLocationDictionary: [String:AnyObject]
         userLocationDictionary =
-            [
-                "uniqueKey" : InfoClient.sharedInstance().accountKey!,
-                "firstName" : InfoClient.sharedInstance().firstName!,
-                "lastName" : InfoClient.sharedInstance().lastName!,
-                "mapString" : InfoClient.sharedInstance().mapString!,
-                "mediaURL" : InfoClient.sharedInstance().mediaURL!,
-                "latitude" : InfoClient.sharedInstance().userLat!,
-                "longitude" : InfoClient.sharedInstance().userLong!
+        [
+            "uniqueKey" : InfoClient.sharedInstance().accountKey!,
+            "firstName" : InfoClient.sharedInstance().firstName!,
+            "lastName" : InfoClient.sharedInstance().lastName!,
+            "mapString" : InfoClient.sharedInstance().mapString!,
+            "mediaURL" : InfoClient.sharedInstance().mediaURL!,
+            "latitude" : InfoClient.sharedInstance().userLat!,
+            "longitude" : InfoClient.sharedInstance().userLong!
         ]
         
         return userLocationDictionary
@@ -294,7 +293,6 @@ class InfoClient : NSObject
                 return NSError(domain: "Flickr Error", code: errorCode!, userInfo: userInfo)
             }
         }
-        
         return error
     }
 }
