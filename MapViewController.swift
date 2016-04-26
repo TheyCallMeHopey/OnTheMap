@@ -30,9 +30,7 @@ class MapViewController: UIViewController, MKMapViewDelegate
     
     @IBAction func pinButton(sender: AnyObject)
     {
-        let locationController = self.storyboard!.instantiateViewControllerWithIdentifier("LocationViewController") as! LocationViewController
-        
-        self.presentViewController(locationController, animated: true, completion: nil)
+        findLocation()
     }
     
     @IBAction func refreshButton(sender: AnyObject)
@@ -62,12 +60,12 @@ class MapViewController: UIViewController, MKMapViewDelegate
     }
     
     //Allow the user to set/update their location
-//    func findLocation()
-//    {
-//        let locationController = self.storyboard!.instantiateViewControllerWithIdentifier("LocationViewController") as! LocationViewController
-//
-//        self.presentViewController(locationController, animated: true, completion: nil)
-//    }
+    func findLocation()
+    {
+        let locationController = self.storyboard!.instantiateViewControllerWithIdentifier("LocationViewController") as! LocationViewController
+
+        self.presentViewController(locationController, animated: true, completion: nil)
+    }
     
     func getStudentLocations()
     {

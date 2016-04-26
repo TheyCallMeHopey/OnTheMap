@@ -26,9 +26,7 @@ class ListViewController: UIViewController, UITableViewDelegate
     
     @IBAction func pinButton(sender: AnyObject)
     {
-        let locationController = self.storyboard!.instantiateViewControllerWithIdentifier("LocationViewController") as! LocationViewController
-        
-        self.presentViewController(locationController, animated: true, completion: nil)
+        findLocation()
     }
     
     @IBAction func refreshButton(sender: AnyObject)
@@ -87,12 +85,12 @@ class ListViewController: UIViewController, UITableViewDelegate
     }
     
     //Allow the user to set/update their location
-//    func findLocation()
-//    {
-//        let locationController = self.storyboard!.instantiateViewControllerWithIdentifier("LocationViewController") as! LocationViewController
-//        
-//        self.presentViewController(locationController, animated: true, completion: nil)
-//    }
+    func findLocation()
+    {
+        let locationController = self.storyboard!.instantiateViewControllerWithIdentifier("LocationViewController") as! LocationViewController
+        
+        self.presentViewController(locationController, animated: true, completion: nil)
+    }
     
     func getStudentLocations()
     {

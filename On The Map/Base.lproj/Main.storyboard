@@ -293,8 +293,6 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="mapView" destination="TrA-On-Dcg" id="zLZ-1j-VZl"/>
-                        <outlet property="pinButton" destination="DKh-QL-PsB" id="JSv-qv-GQp"/>
-                        <outlet property="refreshButton" destination="XeW-5p-7bJ" id="GRP-F2-3YS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QNG-dS-PMK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -323,7 +321,7 @@
         <!--Location View Controller-->
         <scene sceneID="v16-oU-7yt">
             <objects>
-                <viewController title="Location View Controller" id="Mhl-P4-zSS" userLabel="Location View Controller" customClass="LocationViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LocationViewController" title="Location View Controller" id="Mhl-P4-zSS" userLabel="Location View Controller" customClass="LocationViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Hlz-uv-EYK"/>
                         <viewControllerLayoutGuide type="bottom" id="Sfb-oB-qOa"/>
