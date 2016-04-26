@@ -54,12 +54,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate
                     {
                         InfoClient.sharedInstance().loggedIn = true
                         
-                        NSOperationQueue.mainQueue().addOperationWithBlock
-                        {
-                            let controller = self.storyboard!.instantiateViewControllerWithIdentifier("UITabBarController") as! UITabBarController
-                            
-                            self.presentViewController(controller, animated: true, completion: nil)
-                        }
+                        let controller = self.storyboard!.instantiateViewControllerWithIdentifier("UITabBarController") as! UITabBarController
+                        
+                        self.presentViewController(controller, animated: true, completion: nil)
                     }
                     else
                     {

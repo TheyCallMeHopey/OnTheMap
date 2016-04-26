@@ -86,7 +86,7 @@
         <!--List-->
         <scene sceneID="1OW-p6-HQW">
             <objects>
-                <viewController title="List" id="HGF-72-NsE" customClass="ListViewController" customModule="On_The_Map" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ListViewController" title="List" id="HGF-72-NsE" customClass="ListViewController" customModule="On_The_Map" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IUd-zG-HKA"/>
                         <viewControllerLayoutGuide type="bottom" id="RLG-Sj-TWh"/>
@@ -95,20 +95,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Tct-tL-cIm">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Qu2-Tw-HST">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Qu2-Tw-HST" id="qv4-O6-KNq">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
                             <navigationBar contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q5U-Pt-184">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -116,18 +102,60 @@
                                     <navigationItem id="Ca3-6B-J0k">
                                         <barButtonItem key="leftBarButtonItem" title="LOGOUT" id="DkJ-ba-iKm" userLabel="Logout">
                                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="logoutButton:" destination="HGF-72-NsE" id="rcO-gf-ydI"/>
+                                            </connections>
                                         </barButtonItem>
                                         <rightBarButtonItems>
                                             <barButtonItem systemItem="refresh" id="386-rT-LH3">
                                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <action selector="refreshButton:" destination="HGF-72-NsE" id="Ure-eG-raP"/>
+                                                </connections>
                                             </barButtonItem>
                                             <barButtonItem image="PinIcon" id="ZAO-3g-2cm" userLabel="Pin">
                                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <action selector="pinButton:" destination="HGF-72-NsE" id="TQy-cd-MSD"/>
+                                                </connections>
                                             </barButtonItem>
                                         </rightBarButtonItems>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Tct-tL-cIm">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TableCell" id="Qu2-Tw-HST">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Qu2-Tw-HST" id="qv4-O6-KNq">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SUBTITLE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qeX-fZ-u7i">
+                                                    <rect key="frame" x="44" y="18" width="47" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="PinIcon" translatesAutoresizingMaskIntoConstraints="NO" id="3j6-Hi-dTx">
+                                                    <rect key="frame" x="8" y="8" width="33" height="27"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="TITLE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jOU-l6-0jt">
+                                                    <rect key="frame" x="44" y="6" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -143,6 +171,9 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="LIST" image="ListIcon" selectedImage="ListIcon" id="VqU-ho-FX8"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="tableView" destination="Tct-tL-cIm" id="WTz-Db-H0v"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VMx-6i-Itd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -205,7 +236,7 @@
         <!--Map-->
         <scene sceneID="CMD-wn-NZf">
             <objects>
-                <viewController title="Map" id="sA5-dS-cNS" customClass="MapViewController" customModule="On_The_Map" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapViewController" title="Map" id="sA5-dS-cNS" customClass="MapViewController" customModule="On_The_Map" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3Db-6p-eGa"/>
                         <viewControllerLayoutGuide type="bottom" id="LTV-QN-y4P"/>
@@ -224,13 +255,22 @@
                                     <navigationItem id="B5D-BC-fcW">
                                         <barButtonItem key="leftBarButtonItem" title="LOGOUT" id="JFD-dT-Y0n" userLabel="Logout">
                                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="logoutButton:" destination="sA5-dS-cNS" id="4zF-na-EsU"/>
+                                            </connections>
                                         </barButtonItem>
                                         <rightBarButtonItems>
                                             <barButtonItem systemItem="refresh" id="XeW-5p-7bJ">
                                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <action selector="refreshButton:" destination="sA5-dS-cNS" id="1er-Aw-b95"/>
+                                                </connections>
                                             </barButtonItem>
                                             <barButtonItem image="PinIcon" id="DKh-QL-PsB" userLabel="Pin">
                                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <action selector="pinButton:" destination="sA5-dS-cNS" id="haw-fY-NG8"/>
+                                                </connections>
                                             </barButtonItem>
                                         </rightBarButtonItems>
                                     </navigationItem>
@@ -253,6 +293,8 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="mapView" destination="TrA-On-Dcg" id="zLZ-1j-VZl"/>
+                        <outlet property="pinButton" destination="DKh-QL-PsB" id="JSv-qv-GQp"/>
+                        <outlet property="refreshButton" destination="XeW-5p-7bJ" id="GRP-F2-3YS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QNG-dS-PMK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -289,9 +331,71 @@
                     <view key="view" contentMode="scaleToFill" id="agQ-FT-Wsu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aA8-9u-a6X">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <items>
+                                    <navigationItem id="Zhj-6T-yvH">
+                                        <barButtonItem key="rightBarButtonItem" title="CANCEL" id="con-Gf-fOs">
+                                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="cancelButton:" destination="Mhl-P4-zSS" id="Vim-Xf-s0W"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="SEARCH LOCATION" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1E4-O7-Slh">
+                                <rect key="frame" x="0.0" y="100" width="284" height="37"/>
+                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="BSc-ly-aml">
+                                <rect key="frame" x="0.0" y="173" width="375" height="375"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4zI-ST-oFD">
+                                <rect key="frame" x="117" y="595" width="141" height="30"/>
+                                <state key="normal" title="FIND ON THE MAP">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="findOnTheMapButton:" destination="Mhl-P4-zSS" eventType="touchUpInside" id="mKx-7l-hv3"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KgK-uL-MzW">
+                                <rect key="frame" x="298" y="104" width="57" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="→">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="searchLocationButton:" destination="Mhl-P4-zSS" eventType="touchUpInside" id="rf8-FD-PVv"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4zI-ST-oFD" firstAttribute="leading" secondItem="agQ-FT-Wsu" secondAttribute="leadingMargin" constant="97" id="2dH-QK-Paa" userLabel="FindOnMapButton - Left"/>
+                            <constraint firstItem="1E4-O7-Slh" firstAttribute="leading" secondItem="agQ-FT-Wsu" secondAttribute="leadingMargin" id="VIZ-W0-q9A" userLabel="SearchLocation - Left"/>
+                            <constraint firstItem="1E4-O7-Slh" firstAttribute="top" secondItem="aA8-9u-a6X" secondAttribute="bottom" constant="36" id="VoM-OK-yaV" userLabel="SearchLocation - Top"/>
+                            <constraint firstItem="4zI-ST-oFD" firstAttribute="top" secondItem="BSc-ly-aml" secondAttribute="bottom" constant="47" id="Wei-It-jKu" userLabel="FindOnMapButton - Top"/>
+                            <constraint firstItem="1E4-O7-Slh" firstAttribute="trailing" secondItem="agQ-FT-Wsu" secondAttribute="trailingMargin" id="bfO-F2-BCY" userLabel="SearchLocation - Right"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="4zI-ST-oFD" secondAttribute="trailing" constant="97" id="fei-IH-FmM" userLabel="FindOnMapButton - Right"/>
+                            <constraint firstItem="BSc-ly-aml" firstAttribute="leading" secondItem="agQ-FT-Wsu" secondAttribute="leadingMargin" constant="-20" id="rKd-gs-inQ" userLabel="MapView - Left"/>
+                            <constraint firstItem="Sfb-oB-qOa" firstAttribute="top" secondItem="4zI-ST-oFD" secondAttribute="bottom" constant="42" id="re4-nr-QvP" userLabel="FindOnMapButton - Bottom"/>
+                            <constraint firstItem="BSc-ly-aml" firstAttribute="top" secondItem="1E4-O7-Slh" secondAttribute="bottom" constant="36" id="tlg-K7-c6m" userLabel="MapView - Top"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="BSc-ly-aml" secondAttribute="trailing" constant="-20" id="yNY-ef-45d" userLabel="MapView - Right"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="mapView" destination="BSc-ly-aml" id="BLq-nV-6fr"/>
+                        <outlet property="searchLocationButton" destination="KgK-uL-MzW" id="Enk-65-6ii"/>
+                        <outlet property="searchLocationTextField" destination="1E4-O7-Slh" id="yLD-le-QgA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z4a-Gz-FVC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

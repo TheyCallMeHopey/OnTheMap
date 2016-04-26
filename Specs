@@ -74,8 +74,11 @@ VIEW CONTROLLER SCENES:
 
 *****TODO*****
 
--Change font size of "logout"(MapViewController) and "cancel"(WebViewController)
+-Set the zoom capabilities
+
+-Change font size of "logout"(MapViewController) and "cancel"(WebViewController) and "cancel" (locationViewController)
 -Change TabBar background color and highlight color
+-Change the color of the pinIcon image on tableView
 
 
 
