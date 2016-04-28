@@ -56,6 +56,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate
                     {
                         InfoClient.sharedInstance().loggedIn = true
                         
+                        print("LOGGING IN")
+                        
                         let controller = self.storyboard!.instantiateViewControllerWithIdentifier("UITabBarController") as! UITabBarController
                         
                         self.presentViewController(controller, animated: true, completion: nil)

@@ -50,14 +50,18 @@ class ListViewController: UIViewController, UITableViewDelegate
         self.tableView.reloadData()
     }
     
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return students.count
+    }
+    
     //Format cell
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCellWithIdentifier("TableCell") as UITableViewCell!
-        
         let studentLocation = students[indexPath.row]
         
-        cell.textLabel!.text = "\(studentLocation.firstName) \(studentLocation.lastName)"
+        cell.textLabel?.text = "\(studentLocation.firstName) \(studentLocation.lastName)"
         cell.detailTextLabel!.text = studentLocation.mediaURL
         
         return cell
@@ -67,7 +71,7 @@ class ListViewController: UIViewController, UITableViewDelegate
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
         //Instance of WebViewController
-        let detailController = self.storyboard!.instantiateViewControllerWithIdentifier("WebViewController") as! WebViewController
+        let detailController = storyboard!.instantiateViewControllerWithIdentifier("WebViewController") as! WebViewController
         
         //NSURL from the selected location mediaURL string - if it exists
         if let url = NSURL(string: students[indexPath.row].mediaURL)
@@ -87,7 +91,7 @@ class ListViewController: UIViewController, UITableViewDelegate
     //Allow the user to set/update their location
     func findLocation()
     {
-        let locationController = self.storyboard!.instantiateViewControllerWithIdentifier("LocationViewController") as! LocationViewController
+        let locationController = storyboard!.instantiateViewControllerWithIdentifier("LocationViewController") as! LocationViewController
         
         self.presentViewController(locationController, animated: true, completion: nil)
     }

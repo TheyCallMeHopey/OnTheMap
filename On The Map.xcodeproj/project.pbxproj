@@ -98,10 +98,6 @@
 			isa = PBXGroup;
 			children = (
 				F8BB39EB1CAC259C000F222D /* On The Map */,
-				F8BB3A1C1CAC47CD000F222D /* View Controllers */,
-				F8BB3A1D1CAC4813000F222D /* Clients */,
-				F8BB3A1A1CAC46E2000F222D /* Assets */,
-				F8BB3A1B1CAC479A000F222D /* Supporting Files */,
 				F8BB3A241CACD247000F222D /* Other */,
 			);
 			sourceTree = "<group>";
@@ -120,6 +116,10 @@
 			isa = PBXGroup;
 			children = (
 				F8BB39EC1CAC259C000F222D /* AppDelegate.swift */,
+				F8BB3A1C1CAC47CD000F222D /* View Controllers */,
+				F8BB3A1D1CAC4813000F222D /* Clients */,
+				F8BB3A1A1CAC46E2000F222D /* Assets */,
+				F8BB3A1B1CAC479A000F222D /* Supporting Files */,
 			);
 			path = "On The Map";
 			sourceTree = "<group>";
@@ -150,7 +150,6 @@
 				F8BB39F51CAC259C000F222D /* LaunchScreen.storyboard */,
 			);
 			name = Assets;
-			path = "On The Map";
 			sourceTree = "<group>";
 		};
 		F8BB3A1B1CAC479A000F222D /* Supporting Files */ = {
@@ -160,6 +159,7 @@
 				F8BB39F81CAC259C000F222D /* Info.plist */,
 			);
 			name = "Supporting Files";
+			path = ..;
 			sourceTree = "<group>";
 		};
 		F8BB3A1C1CAC47CD000F222D /* View Controllers */ = {
@@ -172,6 +172,7 @@
 				F8BB3A201CAC5FA8000F222D /* LocationViewController.swift */,
 			);
 			name = "View Controllers";
+			path = ..;
 			sourceTree = "<group>";
 		};
 		F8BB3A1D1CAC4813000F222D /* Clients */ = {
@@ -180,6 +181,7 @@
 				F8E5128E1CC17C0A001F9634 /* Info */,
 			);
 			name = Clients;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		F8BB3A241CACD247000F222D /* Other */ = {

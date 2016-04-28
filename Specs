@@ -17,7 +17,7 @@ VIEW CONTROLLER SCENES:
 1. Login View (Allows the user to log in using their Udacity credentials, or (as an extra credit exercise) using their
    Facebook account)
     ✓The login view accepts the email address and password that students use to login to the Udacity site.
-        -User credentials are not required to be saved upon successful login.
+        ✓User credentials are not required to be saved upon successful login.
     ✓When the user taps the Login button, the app will attempt to authenticate with Udacity’s servers.
     ✓Clicking on the Sign Up link will open Safari to the Udacity sign-in page.
     ✓If the connection is made and the email and password are good, the app will segue to the Map and Table Tabbed View.
