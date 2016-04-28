@@ -1,6 +1,6 @@
 
 
-1. The user logs in to the app using their Udacity username and password.
+✓1. The user logs in to the app using their Udacity username and password.
 
 2. The app downloads locations and links previously posted by other students.
     -You can view these links, which can point to any URL that a student chooses.
@@ -16,12 +16,12 @@ VIEW CONTROLLER SCENES:
 
 1. Login View (Allows the user to log in using their Udacity credentials, or (as an extra credit exercise) using their
    Facebook account)
-    -The login view accepts the email address and password that students use to login to the Udacity site.
+    ✓The login view accepts the email address and password that students use to login to the Udacity site.
         -User credentials are not required to be saved upon successful login.
-    -When the user taps the Login button, the app will attempt to authenticate with Udacity’s servers.
-    -Clicking on the Sign Up link will open Safari to the Udacity sign-in page.
-    -If the connection is made and the email and password are good, the app will segue to the Map and Table Tabbed View.
-    -If the login does not succeed, the user will be presented with an alert view specifying whether it was a failed network
+    ✓When the user taps the Login button, the app will attempt to authenticate with Udacity’s servers.
+    ✓Clicking on the Sign Up link will open Safari to the Udacity sign-in page.
+    ✓If the connection is made and the email and password are good, the app will segue to the Map and Table Tabbed View.
+    ✓If the login does not succeed, the user will be presented with an alert view specifying whether it was a failed network
      connection, or an incorrect email and password.
     -Optional: The “Sign in with Facebook” button in the image authenticates with Facebook.
         -Authentication with Facebook may occur through the device’s accounts or through Facebook’s website.
@@ -30,18 +30,18 @@ VIEW CONTROLLER SCENES:
     ✓This view has two tabs at the bottom.
         ✓Specifying a map.
         ✓Specifying a table.
-    -When the map tab is selected, the view displays a map with pins specifying the last 100 locations posted by students.
-        -The user is able to zoom and scroll the map to any location using standard pinch and drag gestures.
-    -When the user taps a pin, it displays the pin annotation popup, with the student’s name (pulled from their Udacity
+    ✓When the map tab is selected, the view displays a map with pins specifying the last 100 locations posted by students.
+        ✓The user is able to zoom and scroll the map to any location using standard pinch and drag gestures.
+    ✓When the user taps a pin, it displays the pin annotation popup, with the student’s name (pulled from their Udacity
      profile) and the link associated with the student’s pin.
         -Tapping anywhere within the annotation will launch Safari and direct it to the link associated with the pin.
-        -Tapping outside of the annotation will dismiss/hide it.
+        ✓Tapping outside of the annotation will dismiss/hide it.
     -When the table tab is selected, the most recent 100 locations posted by students are displayed in a table.
         -Each row displays the name from the student’s Udacity profile. Tapping on the row launches Safari and opens the link
          associated with the student.
     ✓Both the map tab and the table tab share the same top navigation bar.
     ✓The rightmost bar button will be a refresh button.
-        -Clicking on the button will refresh the entire data set by downloading and displaying the most recent 100 posts made
+        ✓Clicking on the button will refresh the entire data set by downloading and displaying the most recent 100 posts made
          by students.
     ✓The bar button directly to its left will be a pin button.
         -Clicking on the pin button will modally present the Information Posting View.
@@ -58,7 +58,7 @@ VIEW CONTROLLER SCENES:
         -If the forward geocode fails, the app will display an alert view notifying the user.
         -If the forward geocode succeeds then the prompt, text field, and button will be hidden, and a map showing the entered location will be displayed.
     -A new text field allows users to paste or type in the link that they would like to be associated with their location.
-    -A new button will be displayed allowing the user to submit their data.
+    A new button will be displayed allowing the user to submit their data.
         -If the link is empty, the app will display an alert view notifying the user.
         -If the submission fails to post the data to the server, then the user should see an alert with an error message
          describing the failure.
@@ -73,15 +73,14 @@ VIEW CONTROLLER SCENES:
 
 
 *****TODO*****
-
--Set the zoom capabilities
-
 -Change font size of "logout"(MapViewController) and "cancel"(WebViewController) and "cancel" (locationViewController)
 -Change TabBar background color and highlight color
 -Change the color of the pinIcon image on tableView
+-ListIcon doesn't show up on first load
 
-
-
+-List view doesn't load the dictionary (Attempt to present <UITabBarController: 0x7fb880f82090> on <On_The_Map.LoginViewController: 0x7fb882a9f7b0> whose view is not in the window hierarchy!)
+-Crashes when you try to pin location (fatal error: unexpectedly found nil while unwrapping an Optional value)
+-Link on pin needs to direct to web view
 
 
 

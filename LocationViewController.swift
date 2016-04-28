@@ -45,7 +45,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UITex
                 //Create user's location
                 InfoClient.sharedInstance().createUserLocation(
                 {
-                    (success, errorString) -> Void in
+                    (success, error) -> Void in
             
                     if success
                     {
@@ -54,7 +54,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UITex
                     }
                     else
                     {
-                        self.alertMessage (errorString!)
+                        self.alertMessage (error!)
                     }
                 })
             }
@@ -62,7 +62,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UITex
             {
                 InfoClient.sharedInstance().updateUserLocation(
                 {
-                    (success, errorString) -> Void in
+                    (success, error) -> Void in
 
                     if success
                     {
@@ -70,14 +70,14 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UITex
                     }
                     else
                     {
-                        self.alertMessage(errorString!)
+                        self.alertMessage(error!)
                     }
                 })
             }
         }
         else
         {
-            self.alertMessage("The Text Field was empty. Please enter a URL such as www.google.com")
+            self.alertMessage("TEXT FIELD WAS EMPTY. PLEASE ENTER PROPER URL.")
         }
     }
     
@@ -94,7 +94,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UITex
                 
                 if let Error = error
                 {
-                    self.alertMessage("GeoCode Failed with Error: \(Error.localizedDescription)")
+                    self.alertMessage("GEOCODE FAILED WITH ERROR: \(Error.localizedDescription)")
                 }
                 else if placemarks!.count > 0
                 {
@@ -139,7 +139,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UITex
         }
         else
         {
-            alertMessage("The text field was empty. Please enter a location such as Los Angeles, CA.")
+            alertMessage("TEXT FIELD WAS EMPTY. PLEASE ENTER PROPER LOCATION.")
         }
     }
     
@@ -163,20 +163,27 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UITex
         //Does user already have a location stored?
         InfoClient.sharedInstance().searchStudentLocation(
         {
-            (success, errorString) -> Void in
+            (success, error) -> Void in
             
             //Was a previous location found?
             if success
             {
-                if (errorString == nil)
+                if (error == nil)
                 {
-                    //Variables for existing location
-                    self.newLocation = false
-                    self.userLocation = InfoClient.sharedInstance().userLocation
-                    
-                    let previousLocation = self.userLocation!.mapString
-                    
-                    self.searchLocationTextField.text = "PREVIOUS LOCATION: \(previousLocation)"
+                    if(InfoClient.sharedInstance().userLocation == nil)
+                    {
+                        self.alertMessage("NO LOCATION FOUND.")
+                    }
+                    else
+                    {
+                        //Variables for existing location
+                        self.newLocation = false
+                        self.userLocation = InfoClient.sharedInstance().userLocation
+                        
+                        let previousLocation = self.userLocation!.mapString
+                        
+                        self.searchLocationTextField.text = "PREVIOUS LOCATION: \(previousLocation)"
+                    }
                 }
                 else
                 {
@@ -186,7 +193,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UITex
                     //Create student location with the location dictionary
                     self.userLocation = StudentLocation(dictionary: locationDictionary as! [String : AnyObject])
 
-                    InfoClient.sharedInstance().userLocation = self.userLocation
+                    self.userLocation = InfoClient.sharedInstance().userLocation
                     
                     self.newLocation = true
                 }
@@ -247,7 +254,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UITex
             
             if (error != nil)
             {
-                self.alertMessage ("Reverse geocoder failed with error: " + error!.localizedDescription)
+                self.alertMessage ("REVERSE GEOCODER FAILED WITH ERROR: " + error!.localizedDescription)
             }
             
             //Is there at least one location in the placemarks array?
@@ -278,31 +285,31 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UITex
     
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError)
     {
-        self.alertMessage ("Error while updating location " + error.localizedDescription)
+        self.alertMessage ("ERROR WHILE UPDATION INFORMATION " + error.localizedDescription)
     }
     
     func returnToRootController()
     {
         InfoClient.sharedInstance().getStudentLocations(
         {
-            (success, errorString) -> Void in
+            (success, error) -> Void in
             
             if success
             {
-                if (errorString == nil)
+                if (error == nil)
                 {
                     self.setCenterLocation()
-                    
-                    //Create pin data to add to the annotations on UITabBarController and store on the InfoClient
-                    InfoClient.sharedInstance().pinData = PinData(title: "\(self.userLocation!.firstName) \(self.userLocation!.lastName)", urlString: "\(self.userLocation!.mediaURL)", coordinate: self.coordinates!)
 
                     let controller = self.storyboard!.instantiateViewControllerWithIdentifier("UITabBarController") as! UITabBarController
                     
                     self.presentViewController(controller, animated: true, completion: nil)
+                    
+                    //Create pin data to add to the annotations on UITabBarController and store on the InfoClient
+                    InfoClient.sharedInstance().pinData = PinData(title: "\(self.userLocation!.firstName) \(self.userLocation!.lastName)", urlString: "\(self.userLocation!.mediaURL)", coordinate: self.coordinates!)
                 }
                 else
                 {
-                    self.alertMessage(errorString!)
+                    self.alertMessage(error!)
                 }
             }
         })

@@ -12,37 +12,37 @@ import UIKit
 extension InfoClient
 {
     //Authenticate log in data, then get user data
-    func authenticateWithLogIn(hostViewController: UIViewController, completionHandler: (success: Bool, errorString: String?) -> Void)
+    func authenticateWithLogIn(hostViewController: UIViewController, completionHandler: (success: Bool, error: String?) -> Void)
     {
         //Get account key from Udacity
         self.getAccountKey()
         {
-            (success, errorString) -> Void in
+            (success, error) -> Void in
             if success
             {
                 //Get user data
                 self.getUserData()
                 {
-                    (success, errorString) -> Void in
+                    (success, error) -> Void in
                     if success
                     {
-                        completionHandler(success: success, errorString: errorString)
+                        completionHandler(success: success, error: error)
                     }
                     else
                     {
-                        completionHandler(success: success, errorString: errorString)
+                        completionHandler(success: success, error: error)
                     }
                 }
             }
             else
             {
-                completionHandler(success: success, errorString: errorString)
+                completionHandler(success: success, error: error)
             }
         }
     }
 
     //Use log in data to get account key from Udacity
-    func getAccountKey(completionHandler: (success: Bool, errorString: String?) -> Void)
+    func getAccountKey(completionHandler: (success: Bool, error: String?) -> Void)
     {
         var parameters = InfoClient.substituteKeyInMethod(InfoClient.URLKeys.AuthenticationDictionary, key: InfoClient.URLKeys.UID, value: userID!)
         
@@ -61,7 +61,7 @@ extension InfoClient
             
                 if let error = error
                 {
-                    completionHandler(success: false, errorString: "Log in failed - account key/session ID \(error.localizedDescription)")
+                    completionHandler(success: false, error: "Log in failed - account key/session ID \(error.localizedDescription)")
                 }
                 else
                 {
@@ -72,7 +72,7 @@ extension InfoClient
                     if let JSONError: AnyObject? = JSONResult[JSONResponseKeys.Error]
                     {
                         //Return error info as string
-                        completionHandler(success: false, errorString: "Status: \(status), Error: \(JSONError!)")
+                        completionHandler(success: false, error: "Status: \(status), Error: \(JSONError!)")
                     }
                 }
                 else
@@ -92,35 +92,35 @@ extension InfoClient
                                 {
                                     self.sessionID = id
                                     
-                                    completionHandler(success: true, errorString: nil)
+                                    completionHandler(success: true, error: nil)
                                 }
                                 else
                                 {
-                                    let theErrorString = "JSONResult did not have key: id."
+                                    let theError = "JSONResult did not have key: id."
                                    
-                                    completionHandler(success: false, errorString: theErrorString)
+                                    completionHandler(success: false, error: theError)
                                 }
                             }
                             else
                             {
-                                let theErrorString = "JSONResult did not have key: session."
+                                let theError = "JSONResult did not have key: session."
                                 
-                                completionHandler(success: false, errorString: theErrorString)
+                                completionHandler(success: false, error: theError)
                             }
                             
                         }
                         else
                         {
-                            let theErrorString = "JSONResult did not have key: key."
+                            let theError = "JSONResult did not have key: key."
                             
-                            completionHandler(success: false, errorString: theErrorString)
+                            completionHandler(success: false, error: theError)
                         }
                     }
                     else
                     {
-                        let theErrorString = "JSONResult did not have key: account."
+                        let theError = "JSONResult did not have key: account."
                         
-                        completionHandler(success: false, errorString: theErrorString)
+                        completionHandler(success: false, error: theError)
                     }
                 }
             }
@@ -128,7 +128,7 @@ extension InfoClient
     }
     
     //Use the sessionID to get user data
-    func getUserData(completionHandler: (success: Bool, errorString: String?) -> Void)
+    func getUserData(completionHandler: (success: Bool, error: String?) -> Void)
     {
         taskForGETMethod(true, baseURL: BaseURLs.UdacityBaseURLSecure, method: Methods.UsersUserID, parameters: "/"+self.accountKey!, requestValues: [])
         {
@@ -136,7 +136,7 @@ extension InfoClient
             
             if let error = error
             {
-                completionHandler(success: false, errorString: "Search failed - \(error.localizedDescription)")
+                completionHandler(success: false, error: "Search failed - \(error.localizedDescription)")
             }
             else
             {
@@ -146,18 +146,18 @@ extension InfoClient
                     InfoClient.sharedInstance().lastName = user[InfoClient.JSONResponseKeys.LastName] as? String
                     InfoClient.sharedInstance().firstName = user[InfoClient.JSONResponseKeys.FirstName] as? String
                     
-                    completionHandler(success: true, errorString: nil)
+                    completionHandler(success: true, error: nil)
                 }
                 else
                 {
-                    completionHandler(success: false, errorString: "No key called user.")
+                    completionHandler(success: false, error: "No key called user.")
                 }
             }
         }
     }
     
     //Search Udacity for student location details
-    func searchStudentLocation(completionHandler: (success: Bool, errorString: String?) -> Void)
+    func searchStudentLocation(completionHandler: (success: Bool, error: String?) -> Void)
     {
         let parameters = InfoClient.substituteKeyInMethod(InfoClient.URLKeys.QueryStudentLocation, key: InfoClient.URLKeys.Key, value: accountKey!)
         
@@ -174,7 +174,7 @@ extension InfoClient
 
                 if let error = error
                 {
-                    completionHandler(success: false, errorString: "Search failed - location \(error.localizedDescription)")
+                    completionHandler(success: false, error: "Search failed - location \(error.localizedDescription)")
                 }
                 else
                 {
@@ -187,26 +187,26 @@ extension InfoClient
                     {
                         self.userLocation = StudentLocation(dictionary: results[0])
                         
-                        completionHandler(success: true, errorString: nil)
+                        completionHandler(success: true, error: nil)
                     }
                     else
                     {
-                        let eString = "Result count is less than or equal to zero."
+                        let theError = "Result count is less than or equal to zero."
                         
-                        completionHandler(success: true, errorString: eString)
+                        completionHandler(success: true, error: theError)
                     }
                 }
                 else
                 {
-                    let eString = "User's StudentLocation not found."
-                    completionHandler(success: true, errorString: eString)
+                    let theError = "User's StudentLocation not found."
+                    completionHandler(success: true, error: theError)
                 }
             }
         }
     }
 
     //Get dictionaries for all student locations on Udacity
-    func getStudentLocations(completionHandler: (success: Bool, errorString: String?) -> Void)
+    func getStudentLocations(completionHandler: (success: Bool, error: String?) -> Void)
     {
         let parameters = "?limit=500"
         
@@ -222,7 +222,7 @@ extension InfoClient
             
             if let error = error
             {
-                completionHandler(success: false, errorString: "Search failed - student locations \(error.localizedDescription)")
+                completionHandler(success: false, error: "Search failed - student locations \(error.localizedDescription)")
             }
             else
             {
@@ -232,12 +232,12 @@ extension InfoClient
                     //Array of StudentLocation objects for the locations - from results dictionary
                     self.students = StudentLocation.studentLocationsFromResults(results)
 
-                    completionHandler(success: true, errorString: nil)
+                    completionHandler(success: true, error: nil)
                 }
                 else
                 {
-                    let eString = "JSON Error - student locations"
-                    completionHandler(success: true, errorString: eString)
+                    let theError = "JSON Error - student locations"
+                    completionHandler(success: true, error: theError)
                 }
             }
             
@@ -245,7 +245,7 @@ extension InfoClient
     }
 
     //User location on Udacity
-    func createUserLocation(completionHandler: (success: Bool, errorString: String?) -> Void)
+    func createUserLocation(completionHandler: (success: Bool, error: String?) -> Void)
     {
         //String for updating dictionary of location data for Udacity user
         let updateString = InfoClient.sharedInstance().userLocation!.buildUpdateString()
@@ -263,17 +263,17 @@ extension InfoClient
             
             if let error = error
             {
-                completionHandler(success: false, errorString: "POST failed - create locations \(error.localizedDescription)")
+                completionHandler(success: false, error: "POST failed - create locations \(error.localizedDescription)")
             }
             else
             {
-                completionHandler(success: true, errorString: nil)
+                completionHandler(success: true, error: nil)
             }
         }
     }
 
     //Update the user's location on Udacity
-    func updateUserLocation(completionHandler: (success: Bool, errorString: String?) -> Void)
+    func updateUserLocation(completionHandler: (success: Bool, error: String?) -> Void)
     {
         //String for updating dictionary of location data for Udacity user
         let objectID = InfoClient.sharedInstance().userLocation!.objectID
@@ -292,11 +292,11 @@ extension InfoClient
 
             if let error = error
             {
-                completionHandler(success: false, errorString: "PUT failed - update locations \(error.localizedDescription)")
+                completionHandler(success: false, error: "PUT failed - update locations \(error.localizedDescription)")
             }
             else
             {
-                completionHandler(success: true, errorString: nil)
+                completionHandler(success: true, error: nil)
             }
         }
     }

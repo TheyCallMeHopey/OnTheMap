@@ -80,7 +80,7 @@ class ListViewController: UIViewController, UITableViewDelegate
         }
         else
         {
-            self.alertMessage ("URL was not well formed.")
+            self.alertMessage ("URL WAS NOT WELL FORMED.")
         }
     }
     
@@ -96,7 +96,7 @@ class ListViewController: UIViewController, UITableViewDelegate
     {
         InfoClient.sharedInstance().getStudentLocations
         {
-            (success, errorString) -> Void in
+            (success, error) -> Void in
                 
             if success
             {
@@ -104,7 +104,7 @@ class ListViewController: UIViewController, UITableViewDelegate
             }
             else
             {
-                self.alertMessage("Unable to get locations.")
+                self.alertMessage("UNABLE TO GET LOCATIONS.")
             }
         }
     }

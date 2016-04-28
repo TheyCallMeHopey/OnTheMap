@@ -63,7 +63,7 @@ class MapViewController: UIViewController, MKMapViewDelegate
     func findLocation()
     {
         let locationController = self.storyboard!.instantiateViewControllerWithIdentifier("LocationViewController") as! LocationViewController
-
+        
         self.presentViewController(locationController, animated: true, completion: nil)
     }
     
@@ -71,11 +71,11 @@ class MapViewController: UIViewController, MKMapViewDelegate
     {
         InfoClient.sharedInstance().getStudentLocations
         {
-            (success, errorString) -> Void in
+            (success, error) -> Void in
             
             if success
             {
-                if (errorString == nil)
+                if (error == nil)
                 {
                     //Store student locations in self variable
                     self.students = InfoClient.sharedInstance().students
@@ -85,10 +85,10 @@ class MapViewController: UIViewController, MKMapViewDelegate
                     {
                         //Filter from subset of all pins
                         let removePinAnnotations = self.mapView!.annotations.filter()
-                        {
-                            $0 !== InfoClient.sharedInstance().pinData
+                            {
+                                $0 !== InfoClient.sharedInstance().pinData
                         }
-
+                        
                         self.mapView!.removeAnnotations(removePinAnnotations)
                     }
                     else
@@ -98,19 +98,16 @@ class MapViewController: UIViewController, MKMapViewDelegate
                     
                     self.loadData()
                     
-                    NSOperationQueue.mainQueue().addOperationWithBlock
-                    {
-                        self.mapView!.addAnnotations(self.pinData)
-                    }
+                    self.mapView!.addAnnotations(self.pinData)
                 }
                 else
                 {
-                    self.alertMessage("Unable to get locations.")
+                    self.alertMessage("UNABLE TO GET LOCATIONS.")
                 }
             }
             else
             {
-                self.alertMessage("Unable to get locations.")
+                self.alertMessage("UNABLE TO GET LOCATIONS.")
             }
         }
     }

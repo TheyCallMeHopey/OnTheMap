@@ -13,6 +13,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate
 {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet weak var loginButton: UIButton!
     
     @IBAction func signUpButton(sender: AnyObject)
     {
@@ -48,7 +50,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate
                 
                 InfoClient.sharedInstance().authenticateWithLogIn(self, completionHandler:
                 {
-                    (success, errorString) -> Void in
+                    (success, error) -> Void in
                     
                     if success
                     {
@@ -62,7 +64,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate
                     {
                         InfoClient.sharedInstance().loggedIn = false
                         
-                        self.alertMessage("Not able to authenticate your log in information.")
+                        self.alertMessage("UNABLE TO AUTHENTICATE LOG IN INFORMATION.")
                     }
                 })
             }
@@ -75,6 +77,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate
         
         emailTextField.delegate = self
         passwordTextField.delegate = self
+    }
+    
+    override func viewDidAppear(animated: Bool)
+    {
+        super.viewWillAppear(true)
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool
