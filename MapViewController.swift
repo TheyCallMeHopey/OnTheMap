@@ -17,7 +17,7 @@ class MapViewController: UIViewController, MKMapViewDelegate
 
     var selectedPin: StudentLocation? = nil
     
-    let regionRadius: CLLocationDistance = 5000000
+    let regionRadius: CLLocationDistance = 4000000
     
     @IBOutlet weak var mapView: MKMapView!
     
@@ -38,6 +38,8 @@ class MapViewController: UIViewController, MKMapViewDelegate
     @IBAction func refreshButton(sender: AnyObject)
     {
         getStudentLocations()
+        
+        print ("Refreshed")
     }
     
     override func viewDidLoad()

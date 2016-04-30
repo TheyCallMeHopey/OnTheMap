@@ -78,11 +78,7 @@ VIEW CONTROLLER SCENES:
 -Change the color of the pinIcon image on tableView
 -ListIcon doesn't show up on first load
 
--List view doesn't load the dictionary (Attempt to present <UITabBarController: 0x7fb880f82090> on <On_The_Map.LoginViewController: 0x7fb882a9f7b0> whose view is not in the window hierarchy!)
 -Crashes when you try to pin location (fatal error: unexpectedly found nil while unwrapping an Optional value)
-
-
--UITableView class - make title and subtitle outlets to refer to them when adding to the table
 
 
 

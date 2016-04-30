@@ -32,6 +32,8 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBAction func refreshButton(sender: AnyObject)
     {
         getStudentLocations()
+        
+        print ("Refreshed")
     }
     
     override func viewDidLoad()
@@ -59,10 +61,13 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     //Format cell
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCellWithIdentifier("TableCell") as UITableViewCell!
         let studentLocation = students[indexPath.row]
         
-        cell.textLabel?.text = "\(studentLocation.firstName) \(studentLocation.lastName)"
+        var cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier("TableCell")! as UITableViewCell
+       
+        cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "TableCell")
+
+        cell.textLabel!.text = "\(studentLocation.firstName) \(studentLocation.lastName)"
         cell.detailTextLabel!.text = studentLocation.mediaURL
         
         return cell
@@ -71,17 +76,17 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     //Row selection
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
-        //Instance of WebViewController
-        let detailController = storyboard!.instantiateViewControllerWithIdentifier("WebViewController") as! WebViewController
-        
         //NSURL from the selected location mediaURL string - if it exists
         if let url = NSURL(string: students[indexPath.row].mediaURL)
         {
-            UIApplication.sharedApplication().openURL(url)
-
-            detailController.urlRequest = NSURLRequest(URL: url)
-
-            self.presentViewController(detailController, animated: true, completion: nil)
+            if validateURL(students[indexPath.row].mediaURL) == true
+            {
+                UIApplication.sharedApplication().openURL(url)
+            }
+            else
+            {
+                self.alertMessage ("URL WAS NOT WELL FORMED.")
+            }
         }
         else
         {
@@ -111,6 +116,20 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
             {
                 self.alertMessage("UNABLE TO GET LOCATIONS.")
             }
+        }
+    }
+    
+    func validateURL(URL: String) -> Bool
+    {
+        let pattern = "^(https?:\\/\\/)([a-zA-Z0-9_\\-~]+\\.)+[a-zA-Z0-9_\\-~\\/\\.]+$"
+        
+        if URL.rangeOfString(pattern, options: .RegularExpressionSearch) != nil
+        {
+            return true
+        }
+        else
+        {
+            return false
         }
     }
     
