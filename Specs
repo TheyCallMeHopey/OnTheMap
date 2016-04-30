@@ -34,7 +34,7 @@ VIEW CONTROLLER SCENES:
         ✓The user is able to zoom and scroll the map to any location using standard pinch and drag gestures.
     ✓When the user taps a pin, it displays the pin annotation popup, with the student’s name (pulled from their Udacity
      profile) and the link associated with the student’s pin.
-        -Tapping anywhere within the annotation will launch Safari and direct it to the link associated with the pin.
+        ✓Tapping anywhere within the annotation will launch Safari and direct it to the link associated with the pin.
         ✓Tapping outside of the annotation will dismiss/hide it.
     -When the table tab is selected, the most recent 100 locations posted by students are displayed in a table.
         -Each row displays the name from the student’s Udacity profile. Tapping on the row launches Safari and opens the link
@@ -80,7 +80,9 @@ VIEW CONTROLLER SCENES:
 
 -List view doesn't load the dictionary (Attempt to present <UITabBarController: 0x7fb880f82090> on <On_The_Map.LoginViewController: 0x7fb882a9f7b0> whose view is not in the window hierarchy!)
 -Crashes when you try to pin location (fatal error: unexpectedly found nil while unwrapping an Optional value)
--Link on pin needs to direct to web view
+
+
+-UITableView class - make title and subtitle outlets to refer to them when adding to the table
 
 
 

@@ -54,11 +54,6 @@ extension InfoClient
         static let Status = "status"
         static let Error = "error"
         
-        //Flickr
-        static let Stat = "stat"
-        static let Code = "code"
-        static let Message = "message"
-        
         static let Account = "account"
         static let Registered = "registered"
         static let AccountKey = "key"

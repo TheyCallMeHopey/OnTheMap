@@ -14,6 +14,8 @@ class MapViewController: UIViewController, MKMapViewDelegate
 {
     var pinData = [PinData]()
     var students = [StudentLocation]()
+
+    var selectedPin: StudentLocation? = nil
     
     let regionRadius: CLLocationDistance = 5000000
     
@@ -135,7 +137,24 @@ class MapViewController: UIViewController, MKMapViewDelegate
         
         mapView.setRegion(coordinateRegion, animated: true)
     }
-
+    
+    //Gives access to annotation info box so that it can be tapped
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView?
+    {
+        let view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "pin")
+        
+        view.canShowCallout = true
+        view.calloutOffset = CGPoint(x: -5, y: 5)
+        view.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure) as UIView
+        
+        return view
+    }
+    
+    //Opens mediaURL when annotation info box is tapped
+    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl)
+    {
+        UIApplication.sharedApplication().openURL(NSURL(string: view.annotation!.subtitle!!)!)
+    }
     
     func alertMessage(message: String)
     {
@@ -146,7 +165,6 @@ class MapViewController: UIViewController, MKMapViewDelegate
         presentViewController(alertController, animated: true, completion: nil)
     }
 }
-
 
 
 

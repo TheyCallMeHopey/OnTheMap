@@ -282,17 +282,7 @@ class InfoClient : NSObject
     class func errorForData(data: NSData?, response: NSURLResponse?, error: NSError) -> NSError
     {
         //JSON data error
-        if let parsedResult = (try? NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)) as? [String:AnyObject]
-        {
-            //Make readable
-            if let errorMessage = parsedResult[JSONResponseKeys.Message] as? String
-            {
-                let errorCode = parsedResult[JSONResponseKeys.Code] as? Int
-                let userInfo = [NSLocalizedDescriptionKey : errorMessage]
-                
-                return NSError(domain: "Flickr Error", code: errorCode!, userInfo: userInfo)
-            }
-        }
+        _ = (try? NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)) as? [String:AnyObject]
         return error
     }
 }

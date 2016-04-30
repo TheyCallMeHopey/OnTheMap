@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ListViewController: UIViewController, UITableViewDelegate
+class ListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
     var students:[StudentLocation] = [StudentLocation]()
     
@@ -39,6 +39,7 @@ class ListViewController: UIViewController, UITableViewDelegate
         super.viewDidLoad()
         
         tableView.delegate = self
+        tableView.dataSource = self
     }
     
     override func viewWillAppear(animated: Bool)

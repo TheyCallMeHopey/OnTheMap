@@ -32,6 +32,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate
         let userID = emailTextField.text
         let userPassword = passwordTextField.text
         
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+        
         if userID == ""
         {
             alertMessage("PLEASE ENTER EMAIL ADDRESS.")
