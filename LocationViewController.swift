@@ -15,6 +15,7 @@ import UIKit
 class LocationViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDelegate
 {
     var newLocation: Bool = true
+    
     var userLocation: StudentLocation?
     
     @IBOutlet weak var searchLocationTextField: UITextField!
@@ -25,7 +26,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UITex
     {
         let controller = self.storyboard!.instantiateViewControllerWithIdentifier("UITabBarController") as! UITabBarController
         
-        self.presentViewController(controller, animated: true, completion: nil)
+        presentViewController(controller, animated: true, completion: nil)
     }
 
     @IBAction func searchLocationButton(sender: AnyObject)
@@ -102,6 +103,9 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UITex
                     let location = place.location
                     
                     self.coordinates = location!.coordinate
+                    
+                    //InfoClient.createUserLocation()
+                    
                     self.userLocation!.latitude = self.coordinates!.latitude
                     self.userLocation!.longitude = self.coordinates!.longitude
                     
@@ -191,7 +195,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UITex
                     let locationDictionary = InfoClient.createUserLocation()
                     
                     //Create student location with the location dictionary
-                    self.userLocation = StudentLocation(dictionary: locationDictionary as! [String : AnyObject])
+                    self.userLocation = StudentLocation(dictionary: locationDictionary)
 
                     self.userLocation = InfoClient.sharedInstance().userLocation
                     

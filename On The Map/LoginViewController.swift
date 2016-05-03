@@ -24,7 +24,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate
         
         webController.urlRequest = NSURLRequest(URL: url!)
         
-        self.presentViewController(webController, animated: true, completion: nil)
+        presentViewController(webController, animated: true, completion: nil)
     }
     
     @IBAction func logInButton(sender: AnyObject)

@@ -27,7 +27,7 @@ class MapViewController: UIViewController, MKMapViewDelegate
         
         let controller = self.storyboard!.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
         
-        self.presentViewController(controller, animated: true, completion: nil)
+        presentViewController(controller, animated: true, completion: nil)
     }
     
     @IBAction func pinButton(sender: AnyObject)
@@ -68,7 +68,7 @@ class MapViewController: UIViewController, MKMapViewDelegate
     {
         let locationController = self.storyboard!.instantiateViewControllerWithIdentifier("LocationViewController") as! LocationViewController
         
-        self.presentViewController(locationController, animated: true, completion: nil)
+        presentViewController(locationController, animated: true, completion: nil)
     }
     
     func getStudentLocations()
@@ -89,7 +89,7 @@ class MapViewController: UIViewController, MKMapViewDelegate
                     {
                         //Filter from subset of all pins
                         let removePinAnnotations = self.mapView!.annotations.filter()
-                            {
+                        {
                                 $0 !== InfoClient.sharedInstance().pinData
                         }
                         

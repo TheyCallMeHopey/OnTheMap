@@ -185,12 +185,16 @@ extension InfoClient
                     //Is dictionary of results empty?
                     if results.count > 0
                     {
+                        print("found")
                         self.userLocation = StudentLocation(dictionary: results[0])
                         
                         completionHandler(success: true, error: nil)
                     }
                     else
                     {
+                        self.userLocation = StudentLocation(dictionary: InfoClient.createUserLocation())
+                        
+                        print ("less than zero")
                         let theError = "Result count is less than or equal to zero."
                         
                         completionHandler(success: true, error: theError)
@@ -198,6 +202,7 @@ extension InfoClient
                 }
                 else
                 {
+                    print("Not found")
                     let theError = "User's StudentLocation not found."
                     completionHandler(success: true, error: theError)
                 }

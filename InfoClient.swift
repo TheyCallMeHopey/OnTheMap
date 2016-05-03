@@ -261,7 +261,7 @@ class InfoClient : NSObject
         return Singleton.sharedInstance
     }
     
-    class func createUserLocation() -> NSDictionary
+    class func createUserLocation() -> [String:AnyObject]
     {
         var userLocationDictionary: [String:AnyObject]
         userLocationDictionary =

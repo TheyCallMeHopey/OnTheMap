@@ -2,9 +2,9 @@
 
 ✓1. The user logs in to the app using their Udacity username and password.
 
-2. The app downloads locations and links previously posted by other students.
-    -You can view these links, which can point to any URL that a student chooses.
-        -We encourage students to share something about their work or interests.
+✓2. The app downloads locations and links previously posted by other students.
+    ✓You can view these links, which can point to any URL that a student chooses.
+        ✓We encourage students to share something about their work or interests.
 
 3. A user can post their own location and link.
     -The locations are specified with a string and forward geocoded.
@@ -36,8 +36,8 @@ VIEW CONTROLLER SCENES:
      profile) and the link associated with the student’s pin.
         ✓Tapping anywhere within the annotation will launch Safari and direct it to the link associated with the pin.
         ✓Tapping outside of the annotation will dismiss/hide it.
-    -When the table tab is selected, the most recent 100 locations posted by students are displayed in a table.
-        -Each row displays the name from the student’s Udacity profile. Tapping on the row launches Safari and opens the link
+    ✓When the table tab is selected, the most recent 100 locations posted by students are displayed in a table.
+        ✓Each row displays the name from the student’s Udacity profile. Tapping on the row launches Safari and opens the link
          associated with the student.
     ✓Both the map tab and the table tab share the same top navigation bar.
     ✓The rightmost bar button will be a refresh button.
@@ -73,11 +73,6 @@ VIEW CONTROLLER SCENES:
 
 
 *****TODO*****
--Change font size of "logout"(MapViewController) and "cancel"(WebViewController) and "cancel" (locationViewController)
--Change TabBar background color and highlight color
--Change the color of the pinIcon image on tableView
--ListIcon doesn't show up on first load
-
 -Crashes when you try to pin location (fatal error: unexpectedly found nil while unwrapping an Optional value)
 
 

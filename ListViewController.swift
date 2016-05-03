@@ -14,14 +14,14 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     var students:[StudentLocation] = [StudentLocation]()
     
     @IBOutlet weak var tableView: UITableView!
-    
+
     @IBAction func logoutButton(sender: AnyObject)
     {
         InfoClient.sharedInstance().loggedIn = false
         
         let controller = self.storyboard!.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
         
-        self.presentViewController(controller, animated: true, completion: nil)
+        presentViewController(controller, animated: true, completion: nil)
     }
     
     @IBAction func pinButton(sender: AnyObject)
@@ -65,10 +65,9 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         var cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier("TableCell")! as UITableViewCell
        
-        cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "TableCell")
+        cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "TableCell")
 
         cell.textLabel!.text = "\(studentLocation.firstName) \(studentLocation.lastName)"
-        cell.detailTextLabel!.text = studentLocation.mediaURL
         
         return cell
     }
@@ -99,7 +98,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     {
         let locationController = storyboard!.instantiateViewControllerWithIdentifier("LocationViewController") as! LocationViewController
         
-        self.presentViewController(locationController, animated: true, completion: nil)
+        presentViewController(locationController, animated: true, completion: nil)
     }
     
     func getStudentLocations()
