@@ -18,9 +18,10 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UITex
     
     var userLocation: StudentLocation?
     
-    @IBOutlet weak var searchLocationTextField: UITextField!
+    @IBOutlet weak var locationAndURLTextField: UITextField!
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var searchLocationButton: UIButton!
+    @IBOutlet weak var saveURLButton: UIButton!
+    @IBOutlet weak var findOnTheMapButton: UIButton!
     
     @IBAction func cancelButton(sender: AnyObject)
     {
@@ -28,13 +29,13 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UITex
         
         presentViewController(controller, animated: true, completion: nil)
     }
-
-    @IBAction func searchLocationButton(sender: AnyObject)
+    
+    @IBAction func saveURLButton(sender: AnyObject)
     {
-        if !self.searchLocationTextField.text!.isEmpty
+        if !self.locationAndURLTextField.text!.isEmpty
         {
             // Get a copy of the text from the text field.
-            let text = self.searchLocationTextField.text
+            let text = self.locationAndURLTextField.text
             
             self.userLocation!.mediaURL = text!
             
@@ -47,7 +48,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UITex
                 InfoClient.sharedInstance().createUserLocation(
                 {
                     (success, error) -> Void in
-            
+                        
                     if success
                     {
                         //Update student locations, then present UITabBarController.
@@ -64,7 +65,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UITex
                 InfoClient.sharedInstance().updateUserLocation(
                 {
                     (success, error) -> Void in
-
+                    
                     if success
                     {
                         self.returnToRootController()
@@ -84,12 +85,12 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UITex
     
     @IBAction func findOnTheMapButton(sender: AnyObject)
     {
-        if !self.searchLocationTextField.text!.isEmpty
+        if !self.locationAndURLTextField.text!.isEmpty
         {
             let geoCoder = CLGeocoder()
             
             //Get geocode address from the text field and set student location variables
-            geoCoder.geocodeAddressString(self.searchLocationTextField.text!, completionHandler:
+            geoCoder.geocodeAddressString(self.locationAndURLTextField.text!, completionHandler:
             {
                 (placemarks:[CLPlacemark]?, error:NSError?) -> Void in
                 
@@ -103,9 +104,6 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UITex
                     let location = place.location
                     
                     self.coordinates = location!.coordinate
-                    
-                    //InfoClient.createUserLocation()
-                    
                     self.userLocation!.latitude = self.coordinates!.latitude
                     self.userLocation!.longitude = self.coordinates!.longitude
                     
@@ -121,29 +119,20 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UITex
                 
                     self.mapView.addAnnotation(self.pinData!)
                     
-                    //Fill the text field with convenience url
-                    if self.newLocation
-                    {
-                        self.searchLocationTextField.text = "http://www.apple.com"
-                    }
-                    else
-                    {
-                        //Provide the existing mediaURL
-                        if let location = self.userLocation
-                        {
-                            self.searchLocationTextField.text = location.mediaURL
-                        }
-                        else
-                        {
-                            self.searchLocationTextField.text = ""
-                        }
-                    }
+                    //Change the text field
+                    self.locationAndURLTextField.text = "ENTER URL SUCH AS, 'http://www.apple.com'"
+                    
+                    self.saveURLButton.hidden = false
+                    self.findOnTheMapButton.hidden = true
                 }
             })
         }
         else
         {
             alertMessage("TEXT FIELD WAS EMPTY. PLEASE ENTER PROPER LOCATION.")
+            
+            saveURLButton.hidden = true
+            findOnTheMapButton.hidden = false
         }
     }
     
@@ -160,7 +149,10 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UITex
     {
         super.viewDidLoad()
         
-        searchLocationTextField.delegate = self
+        locationAndURLTextField.hidden = true
+        findOnTheMapButton.hidden = false
+        
+        locationAndURLTextField.delegate = self
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
         
@@ -186,7 +178,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UITex
                         
                         let previousLocation = self.userLocation!.mapString
                         
-                        self.searchLocationTextField.text = "PREVIOUS LOCATION: \(previousLocation)"
+                        self.locationAndURLTextField.text = "PREVIOUS LOCATION: \(previousLocation)"
                     }
                 }
                 else
@@ -196,7 +188,6 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UITex
                     
                     //Create student location with the location dictionary
                     self.userLocation = StudentLocation(dictionary: locationDictionary)
-
                     self.userLocation = InfoClient.sharedInstance().userLocation
                     
                     self.newLocation = true
@@ -212,15 +203,6 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UITex
         
         //Follow the user's current location
         locationManager.startUpdatingLocation()
-        
-        if searchLocationTextField.text != ""
-        {
-            searchLocationButton.hidden = false
-        }
-        else
-        {
-            searchLocationButton.hidden = true
-        }
     }
     
     override func viewDidAppear(animated: Bool)
@@ -270,7 +252,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UITex
                 
                 if let place = self.placemark
                 {
-                    self.searchLocationTextField.text = "\(place.locality), \(place.administrativeArea)  \(place.country)"
+                    self.locationAndURLTextField.text = "\(place.locality), \(place.administrativeArea)  \(place.country)"
                     
                     print(place.locality)
                     print(place.administrativeArea)

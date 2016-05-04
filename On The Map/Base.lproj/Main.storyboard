@@ -364,13 +364,13 @@
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KgK-uL-MzW">
-                                <rect key="frame" x="298" y="104" width="57" height="30"/>
+                                <rect key="frame" x="298" y="104" width="57" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="→">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="searchLocationButton:" destination="Mhl-P4-zSS" eventType="touchUpInside" id="rf8-FD-PVv"/>
+                                    <action selector="saveURLButton:" destination="Mhl-P4-zSS" eventType="touchUpInside" id="4qt-Ut-inP"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -390,9 +390,10 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="findOnTheMapButton" destination="4zI-ST-oFD" id="clM-fC-4AF"/>
+                        <outlet property="locationAndURLTextField" destination="1E4-O7-Slh" id="C67-KG-mlj"/>
                         <outlet property="mapView" destination="BSc-ly-aml" id="BLq-nV-6fr"/>
-                        <outlet property="searchLocationButton" destination="KgK-uL-MzW" id="Enk-65-6ii"/>
-                        <outlet property="searchLocationTextField" destination="1E4-O7-Slh" id="yLD-le-QgA"/>
+                        <outlet property="saveURLButton" destination="KgK-uL-MzW" id="Rih-Aw-c5e"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z4a-Gz-FVC" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -50,7 +50,6 @@ extension InfoClient
 
     struct JSONResponseKeys
     {
-        //Udacity
         static let Status = "status"
         static let Error = "error"
         
