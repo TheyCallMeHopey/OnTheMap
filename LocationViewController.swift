@@ -193,7 +193,6 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UITex
                     self.newLocation = true
                 }
             }
-
         })
     }
     

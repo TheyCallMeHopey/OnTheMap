@@ -52,17 +52,16 @@ VIEW CONTROLLER SCENES:
     -The Information Posting View allows users to input data in two steps.
         -Adding their location string.
         -Adding their link.
-    -When the Information Posting View is modally presented, the user sees a prompt asking where they are studying.
-        -The user enters a string into a text field or text view.
-    -When the user clicks on the “Find on the Map” button, the app will forward geocode the string.
-        -If the forward geocode fails, the app will display an alert view notifying the user.
-        -If the forward geocode succeeds then the prompt, text field, and button will be hidden, and a map showing the entered location will be displayed.
-    -A new text field allows users to paste or type in the link that they would like to be associated with their location.
-    A new button will be displayed allowing the user to submit their data.
-        -If the link is empty, the app will display an alert view notifying the user.
-        -If the submission fails to post the data to the server, then the user should see an alert with an error message
-         describing the failure.
-    -If at any point the user clicks on the “Cancel” button, then the Information Posting View should be dismissed, returning
+    ✓When the Information Posting View is modally presented, the user sees a prompt asking where they are studying.
+        ✓The user enters a string into a text field or text view.
+    ✓When the user clicks on the “Find on the Map” button, the app will forward geocode the string.
+        ✓If the forward geocode fails, the app will display an alert view notifying the user.
+        ✓If the forward geocode succeeds then the prompt, text field, and button will be hidden, and a map showing the entered location will be displayed.
+    ✓A new text field allows users to paste or type in the link that they would like to be associated with their location.
+    ✓A new button will be displayed allowing the user to submit their data.
+        ✓If the link is empty, the app will display an alert view notifying the user.
+        ✓If the submission fails to post the data to the server, then the user should see an alert with an error message describing the failure.
+    ✓If at any point the user clicks on the “Cancel” button, then the Information Posting View should be dismissed, returning
      the app to the Map and Table Tabbed View.
     -If the submission succeeds, then the Information Posting View should be dismissed, returning the app to the Map and Table
      Tabbed View.
@@ -73,7 +72,7 @@ VIEW CONTROLLER SCENES:
 
 
 *****TODO*****
-
+-After login button is pressed, show message so that user knows that the page is loading
 
 
 

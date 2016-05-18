@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F880862C1CEAC623003CEAAE /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = F880862B1CEAC623003CEAAE /* Reachability.swift */; };
 		F8BB39ED1CAC259C000F222D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BB39EC1CAC259C000F222D /* AppDelegate.swift */; };
 		F8BB39EF1CAC259C000F222D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BB39EE1CAC259C000F222D /* LoginViewController.swift */; };
 		F8BB39F21CAC259C000F222D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8BB39F01CAC259C000F222D /* Main.storyboard */; };
@@ -44,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F880862B1CEAC623003CEAAE /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		F8BB39E91CAC259C000F222D /* On The Map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "On The Map.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8BB39EC1CAC259C000F222D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F8BB39EE1CAC259C000F222D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = "On The Map/LoginViewController.swift"; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 				F8E5128F1CC17C36001F9634 /* InfoClient.swift */,
 				F8E512961CC1947A001F9634 /* InfoConstants.swift */,
 				F8E512981CC1D4C1001F9634 /* InfoConvenience.swift */,
+				F880862B1CEAC623003CEAAE /* Reachability.swift */,
 				F8E512911CC18026001F9634 /* StudentLocation.swift */,
 				F8E512931CC192DF001F9634 /* PinData.swift */,
 			);
@@ -343,6 +346,7 @@
 			files = (
 				F8E5129D1CC97776001F9634 /* MapViewController.swift in Sources */,
 				F8E512921CC18026001F9634 /* StudentLocation.swift in Sources */,
+				F880862C1CEAC623003CEAAE /* Reachability.swift in Sources */,
 				F8BB3A211CAC5FA8000F222D /* LocationViewController.swift in Sources */,
 				F8E512991CC1D4C1001F9634 /* InfoConvenience.swift in Sources */,
 				F8E5129B1CC86FDC001F9634 /* WebViewController.swift in Sources */,

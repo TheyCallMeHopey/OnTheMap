@@ -47,31 +47,39 @@ class LoginViewController: UIViewController, UITextFieldDelegate
             }
             else
             {
-               //Authenticate userID and password
-                InfoClient.sharedInstance().userID = userID
-                InfoClient.sharedInstance().password = userPassword
-                
-                InfoClient.sharedInstance().authenticateWithLogIn(self, completionHandler:
+                //TODO: Check if the internet is working
+                if Reachability.isConnectedToNetwork() == true
                 {
-                    (success, error) -> Void in
+                    //Authenticate userID and password
+                    InfoClient.sharedInstance().userID = userID
+                    InfoClient.sharedInstance().password = userPassword
                     
-                    if success
+                    InfoClient.sharedInstance().authenticateWithLogIn(self, completionHandler:
                     {
-                        InfoClient.sharedInstance().loggedIn = true
-                        
-                        print("Logged In")
-                        
-                        let controller = self.storyboard!.instantiateViewControllerWithIdentifier("UITabBarController") as! UITabBarController
-                        
-                        self.presentViewController(controller, animated: true, completion: nil)
-                    }
-                    else
-                    {
-                        InfoClient.sharedInstance().loggedIn = false
-                        
-                        self.alertMessage("UNABLE TO AUTHENTICATE LOG IN INFORMATION.")
-                    }
-                })
+                        (success, error) -> Void in
+                            
+                        if success
+                        {
+                            InfoClient.sharedInstance().loggedIn = true
+                                
+                            print("Logged In")
+                            
+                            let controller = self.storyboard!.instantiateViewControllerWithIdentifier("UITabBarController") as! UITabBarController
+                                
+                            self.presentViewController(controller, animated: true, completion: nil)
+                        }
+                        else
+                        {
+                            InfoClient.sharedInstance().loggedIn = false
+                            
+                            self.alertMessage("UNABLE TO AUTHENTICATE LOG IN INFORMATION.")
+                        }
+                    })
+                }
+                else if Reachability.isConnectedToNetwork() == false
+                {
+                    self.alertMessage("INTERNET CONNECTION FAILED.")
+                }
             }
         }
     }
@@ -95,6 +103,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate
         
         return true
     }
+    
+//    func hasConnectivity() -> Bool
+//    {
+//        let reachability: Reachability = Reachability.reachabilityForInternetConnection()
+//        let networkStatus: Int = reachability.currentReachabilityStatus().value
+//        return networkStatus != 0
+//    }
     
     func alertMessage(message: String)
     {

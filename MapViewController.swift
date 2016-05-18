@@ -99,9 +99,8 @@ class MapViewController: UIViewController, MKMapViewDelegate
                     {
                         self.mapView!.removeAnnotations(self.pinData)
                     }
-                    
+
                     self.loadData()
-                    
                     self.mapView!.addAnnotations(self.pinData)
                 }
                 else

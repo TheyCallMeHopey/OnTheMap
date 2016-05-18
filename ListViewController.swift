@@ -65,7 +65,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         var cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier("TableCell")! as UITableViewCell
        
-        cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "TableCell")
+        cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "TableCell")
 
         cell.textLabel!.text = "\(studentLocation.firstName) \(studentLocation.lastName)"
         
