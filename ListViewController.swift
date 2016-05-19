@@ -19,6 +19,8 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     {
         InfoClient.sharedInstance().loggedIn = false
         
+        self.dismissViewControllerAnimated(true, completion: nil)
+        
         let controller = self.storyboard!.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
         
         presentViewController(controller, animated: true, completion: nil)

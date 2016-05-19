@@ -47,7 +47,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate
             }
             else
             {
-                //TODO: Check if the internet is working
                 if Reachability.isConnectedToNetwork() == true
                 {
                     //Authenticate userID and password
@@ -103,13 +102,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate
         
         return true
     }
-    
-//    func hasConnectivity() -> Bool
-//    {
-//        let reachability: Reachability = Reachability.reachabilityForInternetConnection()
-//        let networkStatus: Int = reachability.currentReachabilityStatus().value
-//        return networkStatus != 0
-//    }
     
     func alertMessage(message: String)
     {

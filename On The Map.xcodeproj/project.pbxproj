@@ -167,8 +167,8 @@
 		F8BB3A1C1CAC47CD000F222D /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				F8BB39EE1CAC259C000F222D /* LoginViewController.swift */,
 				F8E5129A1CC86FDC001F9634 /* WebViewController.swift */,
+				F8BB39EE1CAC259C000F222D /* LoginViewController.swift */,
 				F8E5129C1CC97776001F9634 /* MapViewController.swift */,
 				F8BB3A221CAC5FE7000F222D /* ListViewController.swift */,
 				F8BB3A201CAC5FA8000F222D /* LocationViewController.swift */,
