@@ -8,11 +8,18 @@
 
 import UIKit
 
+//struct StudentLocation
+//{
+//    
+//}
+
 @UIApplicationMain
+
 class AppDelegate: UIResponder, UIApplicationDelegate
 {
     var window: UIWindow?
     var sessionID: String? = nil
+    //var students = [StudentLocation]()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool
     {

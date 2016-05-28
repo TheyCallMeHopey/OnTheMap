@@ -77,9 +77,6 @@ extension InfoClient
         static let MediaURL = "mediaURL"
         static let Latitude = "latitude"
         static let Longitude = "longitude"
-        
-        static let CreatedAt = "createdAt"
-        static let UpdatedAt = "updatedAt"
     }
 
 }

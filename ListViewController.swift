@@ -71,6 +71,12 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         cell.textLabel!.text = "\(studentLocation.firstName) \(studentLocation.lastName)"
         
+        func inOrder (s1: StudentLocation, s2: StudentLocation) -> Bool
+        {
+            return s1.studentDictionary.count > s2.studentDictionary.count
+        }
+        
+        students.sortInPlace(inOrder)
         return cell
     }
     

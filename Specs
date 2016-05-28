@@ -44,7 +44,7 @@ VIEW CONTROLLER SCENES:
         ✓Clicking on the button will refresh the entire data set by downloading and displaying the most recent 100 posts made
          by students.
     ✓The bar button directly to its left will be a pin button.
-        -Clicking on the pin button will modally present the Information Posting View.
+        ✓Clicking on the pin button will modally present the Information Posting View.
     -Optional: If authentication with Facebook is enabled, consider placing a bar button in the top left corner which will
      allow to user to logout.
 
@@ -63,7 +63,7 @@ VIEW CONTROLLER SCENES:
         ✓If the submission fails to post the data to the server, then the user should see an alert with an error message describing the failure.
     ✓If at any point the user clicks on the “Cancel” button, then the Information Posting View should be dismissed, returning
      the app to the Map and Table Tabbed View.
-    -If the submission succeeds, then the Information Posting View should be dismissed, returning the app to the Map and Table
+    ✓If the submission succeeds, then the Information Posting View should be dismissed, returning the app to the Map and Table
      Tabbed View.
 
 
@@ -72,8 +72,11 @@ VIEW CONTROLLER SCENES:
 
 
 *****TODO*****
--After login button is pressed, show message so that user knows that the page is loading
 
+-Sort the list/table from most recent to oldest
+-Fix the struct (make it global)
+
+-EX. Memes in the mapdelegate
 
 
 

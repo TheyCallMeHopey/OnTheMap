@@ -9,11 +9,9 @@
 import Foundation
 import UIKit
 
-struct StudentLocation
+struct StudentLocation 
 {
     var objectID = ""
-    var createdAt = ""
-    var updatedAt = ""
     
     var uniqueKey = ""
     var firstName = ""
@@ -29,8 +27,6 @@ struct StudentLocation
     init(dictionary: [String:AnyObject])
     {
         if let object = dictionary["objectId"] as? String { objectID = object }
-        if let created = dictionary["createdAt"] as? String { createdAt = created }
-        if let updated = dictionary["updatedAt"] as? String { updatedAt = updated }
         
         if let unique = dictionary["uniqueKey"] as? String { uniqueKey = unique }
         if let first = dictionary["firstName"] as? String { firstName = first }

@@ -25,13 +25,13 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UITex
     
     @IBAction func cancelButton(sender: AnyObject)
     {
-        let controller = self.storyboard!.instantiateViewControllerWithIdentifier("UITabBarController") as! UITabBarController
-        
-        presentViewController(controller, animated: true, completion: nil)
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func saveURLButton(sender: AnyObject)
     {
+        locationAndURLTextField.resignFirstResponder()
+        
         if !self.locationAndURLTextField.text!.isEmpty
         {
             // Get a copy of the text from the text field.
@@ -96,7 +96,9 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UITex
                 
                 if let Error = error
                 {
-                    self.alertMessage("GEOCODE FAILED WITH ERROR: \(Error.localizedDescription)")
+                    self.alertMessage("INVALID LOCATION.")
+                    
+                    print("GEOCODE FAILED WITH ERROR: \(Error.localizedDescription)")
                 }
                 else if placemarks!.count > 0
                 {
@@ -120,7 +122,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UITex
                     self.mapView.addAnnotation(self.pinData!)
                     
                     //Change the text field
-                    self.locationAndURLTextField.text = "ENTER URL SUCH AS, 'http://www.apple.com'"
+                    self.locationAndURLTextField.placeholder = "ENTER URL"
                     
                     self.saveURLButton.hidden = false
                     self.findOnTheMapButton.hidden = true
@@ -149,7 +151,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UITex
     {
         super.viewDidLoad()
         
-        locationAndURLTextField.hidden = true
+        locationAndURLTextField.hidden = false
         findOnTheMapButton.hidden = false
         
         locationAndURLTextField.delegate = self
@@ -178,7 +180,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UITex
                         
                         let previousLocation = self.userLocation!.mapString
                         
-                        self.locationAndURLTextField.text = "PREVIOUS LOCATION: \(previousLocation)"
+                        self.locationAndURLTextField.text = "\(previousLocation)"
                     }
                 }
                 else
