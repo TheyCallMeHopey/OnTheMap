@@ -9,15 +9,13 @@
 import Foundation
 import UIKit
 import MapKit
-
 class MapViewController: UIViewController, MKMapViewDelegate
 {
     var pinData = [PinData]()
     var students = [StudentLocation]()
 
     //var selectedPin: StudentLocation? = nil
-    
-    let regionRadius: CLLocationDistance = 4000000
+    let regionRadius: CLLocationDistance = 5000000
     
     @IBOutlet weak var mapView: MKMapView!
     

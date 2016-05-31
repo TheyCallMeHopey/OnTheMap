@@ -122,6 +122,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UITex
                     self.mapView.addAnnotation(self.pinData!)
                     
                     //Change the text field
+                    self.locationAndURLTextField.text = ""
                     self.locationAndURLTextField.placeholder = "ENTER URL"
                     
                     self.saveURLButton.hidden = false

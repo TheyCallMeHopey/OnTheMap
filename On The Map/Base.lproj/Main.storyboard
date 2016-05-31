@@ -345,7 +345,7 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="SEARCH LOCATION" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="1E4-O7-Slh">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="SEARCH LOCATION" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1E4-O7-Slh">
                                 <rect key="frame" x="0.0" y="100" width="284" height="37"/>
                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -355,15 +355,6 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="BSc-ly-aml">
                                 <rect key="frame" x="0.0" y="173" width="375" height="375"/>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4zI-ST-oFD">
-                                <rect key="frame" x="117" y="595" width="141" height="30"/>
-                                <state key="normal" title="FIND ON THE MAP">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="findOnTheMapButton:" destination="Mhl-P4-zSS" eventType="touchUpInside" id="mKx-7l-hv3"/>
-                                </connections>
-                            </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KgK-uL-MzW">
                                 <rect key="frame" x="298" y="104" width="57" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
@@ -374,17 +365,27 @@
                                     <action selector="saveURLButton:" destination="Mhl-P4-zSS" eventType="touchUpInside" id="4qt-Ut-inP"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4zI-ST-oFD">
+                                <rect key="frame" x="313" y="107" width="27" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="→">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="findOnTheMapButton:" destination="Mhl-P4-zSS" eventType="touchUpInside" id="mKx-7l-hv3"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="4zI-ST-oFD" firstAttribute="leading" secondItem="agQ-FT-Wsu" secondAttribute="leadingMargin" constant="97" id="2dH-QK-Paa" userLabel="FindOnMapButton - Left"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="4zI-ST-oFD" secondAttribute="trailing" constant="15" id="0HO-dd-xov" userLabel="FindOnTheMap - Right"/>
+                            <constraint firstItem="BSc-ly-aml" firstAttribute="top" secondItem="4zI-ST-oFD" secondAttribute="bottom" constant="36" id="QGz-u4-9ZB" userLabel="FindOnTheMap - Bottom"/>
                             <constraint firstItem="1E4-O7-Slh" firstAttribute="leading" secondItem="agQ-FT-Wsu" secondAttribute="leadingMargin" id="VIZ-W0-q9A" userLabel="SearchLocation - Left"/>
                             <constraint firstItem="1E4-O7-Slh" firstAttribute="top" secondItem="aA8-9u-a6X" secondAttribute="bottom" constant="36" id="VoM-OK-yaV" userLabel="SearchLocation - Top"/>
-                            <constraint firstItem="4zI-ST-oFD" firstAttribute="top" secondItem="BSc-ly-aml" secondAttribute="bottom" constant="47" id="Wei-It-jKu" userLabel="FindOnMapButton - Top"/>
+                            <constraint firstItem="4zI-ST-oFD" firstAttribute="top" secondItem="aA8-9u-a6X" secondAttribute="bottom" constant="43" id="ZNu-96-4AY" userLabel="FindOnTheMap - Top"/>
                             <constraint firstItem="1E4-O7-Slh" firstAttribute="trailing" secondItem="agQ-FT-Wsu" secondAttribute="trailingMargin" id="bfO-F2-BCY" userLabel="SearchLocation - Right"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="4zI-ST-oFD" secondAttribute="trailing" constant="97" id="fei-IH-FmM" userLabel="FindOnMapButton - Right"/>
+                            <constraint firstItem="4zI-ST-oFD" firstAttribute="leading" secondItem="1E4-O7-Slh" secondAttribute="trailing" constant="29" id="r9y-tu-EWo" userLabel="FindOnTheMap - Left"/>
                             <constraint firstItem="BSc-ly-aml" firstAttribute="leading" secondItem="agQ-FT-Wsu" secondAttribute="leadingMargin" constant="-20" id="rKd-gs-inQ" userLabel="MapView - Left"/>
-                            <constraint firstItem="Sfb-oB-qOa" firstAttribute="top" secondItem="4zI-ST-oFD" secondAttribute="bottom" constant="42" id="re4-nr-QvP" userLabel="FindOnMapButton - Bottom"/>
                             <constraint firstItem="BSc-ly-aml" firstAttribute="top" secondItem="1E4-O7-Slh" secondAttribute="bottom" constant="36" id="tlg-K7-c6m" userLabel="MapView - Top"/>
                             <constraint firstAttribute="trailingMargin" secondItem="BSc-ly-aml" secondAttribute="trailing" constant="-20" id="yNY-ef-45d" userLabel="MapView - Right"/>
                         </constraints>
