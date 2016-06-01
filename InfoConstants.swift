@@ -63,6 +63,8 @@ extension InfoClient
         static let LastName = "last_name"
         static let FirstName = "first_name"
         
+        static let UpdatedAt = "updatedAt"
+        
         static let Results = "results"
     }
     

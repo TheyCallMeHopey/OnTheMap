@@ -22,12 +22,13 @@ struct StudentLocation
     var latitude = 0.0
     var longitude = 0.0
     
+    var updatedAt = ""
+    
     var studentDictionary: [String:AnyObject]
     
     init(dictionary: [String:AnyObject])
     {
         if let object = dictionary["objectId"] as? String { objectID = object }
-        
         if let unique = dictionary["uniqueKey"] as? String { uniqueKey = unique }
         if let first = dictionary["firstName"] as? String { firstName = first }
         if let last = dictionary["lastName"] as? String { lastName = last }
@@ -37,6 +38,8 @@ struct StudentLocation
         if let lat = dictionary["latitude"] as? Double { latitude = lat }
         if let long = dictionary["longitude"] as? Double { longitude = long }
         
+        if let updated = dictionary["updatedAt"] as? String { updatedAt = updated}
+        
         studentDictionary =
         [
             "uniqueKey" : uniqueKey,
@@ -45,7 +48,8 @@ struct StudentLocation
             "mapString" : mapString,
             "mediaURL" : mediaURL,
             "latitude" : latitude,
-            "longitude" : longitude
+            "longitude" : longitude,
+            "updatedAt" : updatedAt
         ]
     }
     
@@ -58,6 +62,8 @@ struct StudentLocation
         {
             studentLocations.append(StudentLocation(dictionary: result))
         }
+        
+        studentLocations.sort({$0.updatedAt > $1.updatedAt})
         
         return studentLocations
     }
