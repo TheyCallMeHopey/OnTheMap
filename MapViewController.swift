@@ -24,6 +24,7 @@ class MapViewController: UIViewController, MKMapViewDelegate
         InfoClient.sharedInstance().loggedIn = false
         
         self.dismissViewControllerAnimated(true, completion: nil)
+        delete()
         
         let controller = self.storyboard!.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
         
@@ -164,6 +165,46 @@ class MapViewController: UIViewController, MKMapViewDelegate
         
         alertController.addAction(okAction)
         presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    func delete()
+    {
+        let request = NSMutableURLRequest(URL: NSURL(string: "https://www.udacity.com/api/session")!)
+        let sharedCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
+        
+        var xsrfCookie: NSHTTPCookie? = nil
+        
+        request.HTTPMethod = "DELETE"
+        
+        for cookie in sharedCookieStorage.cookies!
+        {
+            if cookie.name == "XSRF-TOKEN"
+            {
+                xsrfCookie = cookie
+            }
+        }
+        
+        if let xsrfCookie = xsrfCookie
+        {
+            request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
+        }
+        
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithRequest(request)
+        {
+            data, response, error in
+            
+            if error != nil
+            {
+                return
+            }
+            
+            let newData = data!.subdataWithRange(NSMakeRange(5, data!.length - 5))
+            
+            print(NSString(data: newData, encoding: NSUTF8StringEncoding))
+        }
+        
+        task.resume()
     }
 }
 
