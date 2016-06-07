@@ -15,11 +15,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     @IBAction func signUpButton(sender: AnyObject)
     {
+        activityIndicator.startAnimating()
+        
        //Open web for sign up
         let webController = self.storyboard!.instantiateViewControllerWithIdentifier("WebViewController") as! WebViewController
+        
+        activityIndicator.stopAnimating()
+        
         let url = NSURL(string: "https://www.udacity.com/account/auth#!/signup")
         
         webController.urlRequest = NSURLRequest(URL: url!)
@@ -29,6 +35,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate
     
     @IBAction func logInButton(sender: AnyObject)
     {
+        activityIndicator.startAnimating()
+        
         let userID = emailTextField.text
         let userPassword = passwordTextField.text
         
@@ -56,7 +64,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate
                     InfoClient.sharedInstance().authenticateWithLogIn(self, completionHandler:
                     {
                         (success, error) -> Void in
-                            
+                        
                         if success
                         {
                             InfoClient.sharedInstance().loggedIn = true
@@ -64,6 +72,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate
                             print("Logged In")
                             
                             let controller = self.storyboard!.instantiateViewControllerWithIdentifier("UITabBarController") as! UITabBarController
+                            
+                            self.activityIndicator.stopAnimating()
                                 
                             self.presentViewController(controller, animated: true, completion: nil)
                         }

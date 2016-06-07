@@ -28,7 +28,7 @@ class InfoClient : NSObject
     var userLocation: StudentLocation? = nil
     
     var students:[StudentLocation] = [StudentLocation]()
-
+    
     //To center the map after the location has been found
     var pinData:PinData?
     

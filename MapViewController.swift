@@ -14,7 +14,6 @@ class MapViewController: UIViewController, MKMapViewDelegate
     var pinData = [PinData]()
     var students = [StudentLocation]()
 
-    //var selectedPin: StudentLocation? = nil
     let regionRadius: CLLocationDistance = 5000000
     
     @IBOutlet weak var mapView: MKMapView!
@@ -67,6 +66,7 @@ class MapViewController: UIViewController, MKMapViewDelegate
     //Allow the user to set/update their location
     func findLocation()
     {
+        
         let locationController = self.storyboard!.instantiateViewControllerWithIdentifier("LocationViewController") as! LocationViewController
         
         presentViewController(locationController, animated: true, completion: nil)

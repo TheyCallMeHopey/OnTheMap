@@ -63,7 +63,7 @@ struct StudentLocation
             studentLocations.append(StudentLocation(dictionary: result))
         }
         
-        studentLocations.sort({$0.updatedAt > $1.updatedAt})
+        studentLocations.sortInPlace({$0.updatedAt > $1.updatedAt})
         
         return studentLocations
     }

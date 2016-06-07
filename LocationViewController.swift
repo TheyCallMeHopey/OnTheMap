@@ -22,6 +22,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UITex
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var saveURLButton: UIButton!
     @IBOutlet weak var findOnTheMapButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     @IBAction func cancelButton(sender: AnyObject)
     {
@@ -87,6 +88,8 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UITex
     {
         if !self.locationAndURLTextField.text!.isEmpty
         {
+            activityIndicator.startAnimating()
+            
             let geoCoder = CLGeocoder()
             
             //Get geocode address from the text field and set student location variables
@@ -96,12 +99,16 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UITex
                 
                 if let Error = error
                 {
+                    self.activityIndicator.stopAnimating()
+                    
                     self.alertMessage("INVALID LOCATION.")
                     
                     print("GEOCODE FAILED WITH ERROR: \(Error.localizedDescription)")
                 }
                 else if placemarks!.count > 0
                 {
+                    self.activityIndicator.stopAnimating()
+                    
                     let place = placemarks![0] 
                     let location = place.location
                     

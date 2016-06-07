@@ -180,6 +180,9 @@
 		F8BB3A1D1CAC4813000F222D /* Clients */ = {
 			isa = PBXGroup;
 			children = (
+				F8E5128F1CC17C36001F9634 /* InfoClient.swift */,
+				F8E512961CC1947A001F9634 /* InfoConstants.swift */,
+				F8E512981CC1D4C1001F9634 /* InfoConvenience.swift */,
 				F8E5128E1CC17C0A001F9634 /* Info */,
 			);
 			name = Clients;
@@ -199,9 +202,6 @@
 		F8E5128E1CC17C0A001F9634 /* Info */ = {
 			isa = PBXGroup;
 			children = (
-				F8E5128F1CC17C36001F9634 /* InfoClient.swift */,
-				F8E512961CC1947A001F9634 /* InfoConstants.swift */,
-				F8E512981CC1D4C1001F9634 /* InfoConvenience.swift */,
 				F880862B1CEAC623003CEAAE /* Reachability.swift */,
 				F8E512911CC18026001F9634 /* StudentLocation.swift */,
 				F8E512931CC192DF001F9634 /* PinData.swift */,
