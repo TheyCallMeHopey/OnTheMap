@@ -49,6 +49,12 @@ class MapViewController: UIViewController, MKMapViewDelegate
         mapView.delegate = self
         
         getStudentLocations()
+        
+        //TODO: test (new)
+        if let pin = InfoClient.sharedInstance().pinData
+        {
+            self.mapView!.addAnnotation(pin)
+        }
     }
     
     override func viewWillAppear(animated: Bool)
@@ -57,16 +63,16 @@ class MapViewController: UIViewController, MKMapViewDelegate
         
         centerMapLocation(InfoClient.sharedInstance().currentLocation!)
         
-        if let pin = InfoClient.sharedInstance().pinData
-        {
-            self.mapView!.addAnnotation(pin)
-        }
+        //TODO: test (old)
+//        if let pin = InfoClient.sharedInstance().pinData
+//        {
+//            self.mapView!.addAnnotation(pin)
+//        }
     }
     
     //Allow the user to set/update their location
     func findLocation()
     {
-        
         let locationController = self.storyboard!.instantiateViewControllerWithIdentifier("LocationViewController") as! LocationViewController
         
         presentViewController(locationController, animated: true, completion: nil)
