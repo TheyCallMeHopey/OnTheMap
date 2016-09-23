@@ -13,7 +13,7 @@ extension InfoClient
         let baseURLSecureString = "https://udacity.com/api/"   
 
         static let UdacityBaseURLSecure: String = "https://www.udacity.com/api/"
-        static let ParseBaseURLSecure: String = "https://parse.udacity.com/parse/classes"
+        static let ParseBaseURLSecure: String = "https://parse.udacity.com/parse/classes/"
     }
     
     struct Methods

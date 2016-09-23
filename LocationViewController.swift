@@ -37,6 +37,8 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UITex
         {
             // Get a copy of the text from the text field.
             let text = self.locationAndURLTextField.text
+            self.activityIndicator.startAnimating()
+            self.activityIndicator.hidden = false
             
             self.userLocation!.mediaURL = text!
             
@@ -54,6 +56,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UITex
                     {
                         //Update student locations, then present UITabBarController.
                         self.returnToRootController()
+                        self.activityIndicator.stopAnimating()
                     }
                     else
                     {
@@ -70,6 +73,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UITex
                     if success
                     {
                         self.returnToRootController()
+                        self.activityIndicator.stopAnimating()
                     }
                     else
                     {
@@ -88,6 +92,8 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UITex
     {
         if !self.locationAndURLTextField.text!.isEmpty
         {
+            findOnTheMapButton.hidden = false
+            activityIndicator.hidden = false
             activityIndicator.startAnimating()
             
             let geoCoder = CLGeocoder()
@@ -132,6 +138,9 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UITex
                     self.locationAndURLTextField.text = ""
                     self.locationAndURLTextField.placeholder = "ENTER URL"
                     
+                    self.activityIndicator.stopAnimating()
+                    self.activityIndicator.hidden = true
+            
                     self.saveURLButton.hidden = false
                     self.findOnTheMapButton.hidden = true
                 }
@@ -161,6 +170,8 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UITex
         
         locationAndURLTextField.hidden = false
         findOnTheMapButton.hidden = false
+        activityIndicator.hidden = true
+        saveURLButton.hidden = true
         
         locationAndURLTextField.delegate = self
         locationManager.delegate = self
