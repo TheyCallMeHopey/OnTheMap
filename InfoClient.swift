@@ -261,6 +261,14 @@ class InfoClient : NSObject
         return Singleton.sharedInstance
     }
     
+    //TODO
+//    class func studentData() -> StudentLocation
+//    {
+//        var students:[StudentLocation] = [StudentLocation]()
+//        
+//        return students
+//    }
+    
     class func createUserLocation() -> [String:AnyObject]
     {
         var userLocationDictionary: [String:AnyObject]

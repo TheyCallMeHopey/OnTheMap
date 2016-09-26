@@ -73,6 +73,13 @@ VIEW CONTROLLER SCENES:
 
 *****TODO*****
 
+- ListViewController - Order from most recent to latest update
+- InfoConvenience - Make sure the location can be updated (JSON)
+- The StudentInformation structs should not be stored inside the "Appdelegate", the view controllers, or inside the client class. Create another model class (For example a singleton called StudentData) and save there the array of structs.
+- ListView - logoutButton - deleting the session
+- Clean out commented sections
+
+
 Locations?
 Check the login - differentiate between wrong credentials and no connection\
 Student information

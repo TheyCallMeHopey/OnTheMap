@@ -216,7 +216,8 @@ extension InfoClient
     //Get dictionaries for all student locations on Udacity
     func getStudentLocations(completionHandler: (success: Bool, error: String?) -> Void)
     {
-        let parameters = "?limit=100"
+        //let parameters = "?limit=100"
+        let parameters = "?limit=100&order=-updatedAt"
         
         //Dictionary that holds request values
         var requestValues = [[String:String]]()
@@ -304,6 +305,7 @@ extension InfoClient
             }
             else
             {
+                //TODO: Make sure the location can be updated
                 completionHandler(success: true, error: nil)
             }
         }

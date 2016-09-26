@@ -19,12 +19,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate
     
     @IBAction func signUpButton(sender: AnyObject)
     {
-        activityIndicator.startAnimating()
+        dispatch_async(dispatch_get_main_queue())
+        {
+            self.activityIndicator.startAnimating()
+        }
         
        //Open web for sign up
         let webController = self.storyboard!.instantiateViewControllerWithIdentifier("WebViewController") as! WebViewController
         
-        activityIndicator.stopAnimating()
+        dispatch_async(dispatch_get_main_queue())
+        {
+            dispatch_async(dispatch_get_main_queue())
+            {
+                self.activityIndicator.stopAnimating()
+            }
+        }
         
         let url = NSURL(string: "https://www.udacity.com/account/auth#!/signup")
         
@@ -35,7 +44,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate
     
     @IBAction func logInButton(sender: AnyObject)
     {
-        activityIndicator.startAnimating()
+        dispatch_async(dispatch_get_main_queue())
+        {
+            self.activityIndicator.startAnimating()
+        }
         
         let userID = emailTextField.text
         let userPassword = passwordTextField.text
@@ -73,7 +85,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate
                             
                             let controller = self.storyboard!.instantiateViewControllerWithIdentifier("UITabBarController") as! UITabBarController
                             
-                            self.activityIndicator.stopAnimating()
+                            dispatch_async(dispatch_get_main_queue())
+                            {
+                                self.activityIndicator.stopAnimating()
+                            }
                                 
                             self.presentViewController(controller, animated: true, completion: nil)
                         }
@@ -81,12 +96,22 @@ class LoginViewController: UIViewController, UITextFieldDelegate
                         {
                             InfoClient.sharedInstance().loggedIn = false
                             
+                            dispatch_async(dispatch_get_main_queue())
+                            {
+                                self.activityIndicator.stopAnimating()
+                            }
+                            
                             self.alertMessage("UNABLE TO AUTHENTICATE LOG IN INFORMATION.")
                         }
                     })
                 }
                 else if Reachability.isConnectedToNetwork() == false
                 {
+                    dispatch_async(dispatch_get_main_queue())
+                    {
+                        self.activityIndicator.stopAnimating()
+                    }
+                    
                     self.alertMessage("INTERNET CONNECTION FAILED.")
                 }
             }

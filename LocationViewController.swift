@@ -35,10 +35,13 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UITex
         
         if !self.locationAndURLTextField.text!.isEmpty
         {
-            // Get a copy of the text from the text field.
+            //Get a copy of the text from the text field.
             let text = self.locationAndURLTextField.text
-            self.activityIndicator.startAnimating()
-            self.activityIndicator.hidden = false
+            
+            dispatch_async(dispatch_get_main_queue())
+            {
+                self.activityIndicator.startAnimating()
+            }
             
             self.userLocation!.mediaURL = text!
             
@@ -56,7 +59,10 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UITex
                     {
                         //Update student locations, then present UITabBarController.
                         self.returnToRootController()
-                        self.activityIndicator.stopAnimating()
+                        dispatch_async(dispatch_get_main_queue())
+                        {
+                            self.activityIndicator.stopAnimating()
+                        }
                     }
                     else
                     {
@@ -73,7 +79,11 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UITex
                     if success
                     {
                         self.returnToRootController()
-                        self.activityIndicator.stopAnimating()
+                        
+                        dispatch_async(dispatch_get_main_queue())
+                        {
+                            self.activityIndicator.stopAnimating()
+                        }
                     }
                     else
                     {
@@ -94,7 +104,11 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UITex
         {
             findOnTheMapButton.hidden = false
             activityIndicator.hidden = false
-            activityIndicator.startAnimating()
+            
+            dispatch_async(dispatch_get_main_queue())
+            {
+                self.activityIndicator.startAnimating()
+            }
             
             let geoCoder = CLGeocoder()
             
@@ -105,7 +119,10 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UITex
                 
                 if let Error = error
                 {
-                    self.activityIndicator.stopAnimating()
+                    dispatch_async(dispatch_get_main_queue())
+                    {
+                        self.activityIndicator.stopAnimating()
+                    }
                     
                     self.alertMessage("INVALID LOCATION.")
                     
@@ -113,7 +130,10 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UITex
                 }
                 else if placemarks!.count > 0
                 {
-                    self.activityIndicator.stopAnimating()
+                    dispatch_async(dispatch_get_main_queue())
+                    {
+                        self.activityIndicator.stopAnimating()
+                    }
                     
                     let place = placemarks![0] 
                     let location = place.location
@@ -138,7 +158,11 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UITex
                     self.locationAndURLTextField.text = ""
                     self.locationAndURLTextField.placeholder = "ENTER URL"
                     
-                    self.activityIndicator.stopAnimating()
+                    dispatch_async(dispatch_get_main_queue())
+                    {
+                        self.activityIndicator.stopAnimating()
+                    }
+                    
                     self.activityIndicator.hidden = true
             
                     self.saveURLButton.hidden = false
@@ -306,9 +330,9 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, UITex
                 {
                     self.setCenterLocation()
 
-                    let controller = self.storyboard!.instantiateViewControllerWithIdentifier("UITabBarController") as! UITabBarController
+                    //let controller = self.storyboard!.instantiateViewControllerWithIdentifier("UITabBarController") as! UITabBarController
                     
-                    self.presentViewController(controller, animated: true, completion: nil)
+                    self.dismissViewControllerAnimated(true, completion: nil)
                     
                     //Create pin data to add to the annotations on UITabBarController and store on the InfoClient
                     InfoClient.sharedInstance().pinData = PinData(title: "\(self.userLocation!.firstName) \(self.userLocation!.lastName)", urlString: "\(self.userLocation!.mediaURL)", coordinate: self.coordinates!)

@@ -19,7 +19,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     {
         InfoClient.sharedInstance().loggedIn = false
         
-        self.dismissViewControllerAnimated(true, completion: nil)
+        //self.dismissViewControllerAnimated(true, completion: nil)
         delete()
         
         let controller = self.storyboard!.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
@@ -72,6 +72,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         cell.textLabel!.text = "\(studentLocation.firstName) \(studentLocation.lastName)"
         
+        //TODO: Make sure the order is in place most recent to oldest update
         func inOrder (s1: StudentLocation, s2: StudentLocation) -> Bool
         {
             return s1.studentDictionary.count > s2.studentDictionary.count
@@ -167,6 +168,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
         
+        //TERM
         if let xsrfCookie = xsrfCookie
         {
             request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")

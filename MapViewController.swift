@@ -161,7 +161,38 @@ class MapViewController: UIViewController, MKMapViewDelegate
     //Opens mediaURL when annotation info box is tapped
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl)
     {
+        //NSURL from the selected location mediaURL string - if it exists
+        if let url = NSURL(string: view.annotation!.subtitle!!)
+        {
+            if validateURL(view.annotation!.subtitle!!)
+            {
+                UIApplication.sharedApplication().openURL(url)
+            }
+            else
+            {
+                self.alertMessage ("URL WAS NOT WELL FORMED.")
+            }
+        }
+        else
+        {
+            self.alertMessage ("URL WAS NOT WELL FORMED.")
+        }
+        
         UIApplication.sharedApplication().openURL(NSURL(string: view.annotation!.subtitle!!)!)
+    }
+    
+    func validateURL(URL: String) -> Bool
+    {
+        let pattern = "^(https?:\\/\\/)([a-zA-Z0-9_\\-~]+\\.)+[a-zA-Z0-9_\\-~\\/\\.]+$"
+        
+        if URL.rangeOfString(pattern, options: .RegularExpressionSearch) != nil
+        {
+            return true
+        }
+        else
+        {
+            return false
+        }
     }
     
     func alertMessage(message: String)
